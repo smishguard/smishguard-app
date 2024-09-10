@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "949457201651",
+    "project_id": "smishguard-6cf37",
+    "storage_bucket": "smishguard-6cf37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949457201651:android:6efde5121aec4f68ee4a86",
+        "android_client_info": {
+          "package_name": "com.smishguard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF5YCK2MH-DxWOfMrISggsU0LALymhrIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
