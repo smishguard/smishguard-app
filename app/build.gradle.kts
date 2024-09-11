@@ -43,4 +43,7 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
     implementation("com.google.firebase:firebase-analytics")
+
+    implementation ("com.airbnb.android:lottie:3.7.0")
+
 }
