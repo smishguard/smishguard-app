@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
-<!--    tools:context=".registerActivity"-->
+    <!--    tools:context=".registerActivity"-->
 
     <ImageView
         android:id="@+id/imageView"
@@ -58,20 +58,21 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/setTextUserR"
+        android:id="@+id/setTextMailR"
         android:layout_width="0dp"
         android:layout_height="54.3dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/textbox_background"
-        android:drawableLeft="@drawable/usuario"
+        android:drawableLeft="@drawable/mail"
         android:drawablePadding="8dp"
-        android:paddingLeft="20dp"
         android:ems="10"
-        android:inputType="text"
-        android:hint="Usuario"
+        android:inputType="textEmailAddress"
+        android:hint="Correo"
+        android:paddingLeft="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -85,50 +86,30 @@
         android:background="@drawable/textbox_background"
         android:drawableLeft="@drawable/passw"
         android:drawablePadding="8dp"
-        android:paddingLeft="20dp"
         android:ems="10"
-        android:inputType="textPassword"
         android:hint="Contraseña"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setTextUserR" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/setTextMailR"
-        android:layout_width="0dp"
-        android:layout_height="54.3dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/textbox_background"
-        android:drawableLeft="@drawable/mail"
-        android:drawablePadding="8dp"
+        android:inputType="textPassword"
         android:paddingLeft="16dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="Correo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setTextPasswordR" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/setTextPhoneR"
-        android:layout_width="0dp"
-        android:layout_height="54.3dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/textbox_background"
-        android:drawableLeft="@drawable/phone"
-        android:drawablePadding="8dp"
-        android:paddingLeft="20dp"
-
-        android:ems="10"
-        android:inputType="phone"
-        android:hint="Celular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setTextMailR" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/setTextPhoneR"
+        android:layout_width="292dp"
+        android:layout_height="54.3dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/textbox_background"
+        android:drawableLeft="@drawable/phone"
+        android:drawablePadding="8dp"
+        android:ems="10"
+        android:hint="Celular"
+        android:inputType="phone"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRegister"
@@ -181,5 +162,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnGoLogin" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="O"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextPasswordR" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
