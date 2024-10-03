@@ -55,4 +55,11 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    // Limpiar el objeto binding cuando se destruya la actividad
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
+    }
 }
