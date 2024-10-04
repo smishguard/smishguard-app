@@ -109,7 +109,7 @@
             android:layout_toEndOf="@id/logoImage"
             android:background="@drawable/textbox_mail_blank"
             android:gravity="start|top"
-            android:hint="Cuentenos cuál es su inconveniente"
+            android:hint="Ingrese el mensaje que desea analizar"
             android:inputType="textMultiLine"
             android:padding="10dp"
             android:textSize="13sp" />
