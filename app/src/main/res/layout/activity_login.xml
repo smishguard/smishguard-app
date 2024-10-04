@@ -57,27 +57,28 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/setTextUser"
+        android:id="@+id/setTextMailL"
         android:layout_width="0dp"
         android:layout_height="54.3dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/textbox_background"
-        android:drawableLeft="@drawable/usuario"
+        android:drawableLeft="@drawable/mail"
         android:drawablePadding="8dp"
-        android:paddingLeft="20dp"
         android:ems="10"
-        android:hint="Usuario "
-        android:inputType="text"
-        android:textStyle="bold"
+        android:hint="Correo"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="20dp"
         android:textColorHint="#808080"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/setTextPassword"
+        android:id="@+id/setTextPasswordL"
         android:layout_width="0dp"
         android:layout_height="54.2dp"
         android:layout_marginStart="50dp"
@@ -94,7 +95,7 @@
         android:textColorHint="#808080"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setTextUser" />
+        app:layout_constraintTop_toBottomOf="@+id/setTextMailL" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
@@ -109,7 +110,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/setTextPasswordL" />
 
     <TextView
         android:id="@+id/btnGoRegister"
@@ -127,38 +128,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="otros"
-        android:textColor="@color/dark_blue"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGoRegister" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnGoogleLogin"
-        style="@android:style/Widget.Button"
-        android:layout_width="264dp"
-        android:layout_height="54.2dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/button_background_google"
-        android:drawableLeft="@drawable/google_icon"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="Inicia sesión con Google"
-        android:textColor="#94000000"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

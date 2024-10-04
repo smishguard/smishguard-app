@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,15 +15,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmishGuard"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".AnalysisActivity" />
+        <activity android:name=".BlockedNumbersActivity" />
+        <activity android:name=".ConfigurationActivity" />
+        <activity android:name=".EducationActivity" />
+        <activity android:name=".InboxActivity" />
+        <activity android:name=".InitialActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ManualAnalysisActivity" />
+        <activity android:name=".MessageActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ReportedMessagesActivity" />
+        <activity android:name=".ResultActivity" />
+        <activity android:name=".SupportActivity" />
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 </manifest>
