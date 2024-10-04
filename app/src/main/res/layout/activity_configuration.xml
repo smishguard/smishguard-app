@@ -85,7 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp" />
-</LinearLayout>
+    </LinearLayout>
 
 
     <LinearLayout
@@ -102,6 +102,38 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutTextRules">
 
         <TextView
+            android:id="@+id/textView11"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:textSize="15sp"
+            android:text="Conceder acceso a las notificaciones de tu dispositivo"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:background="@android:color/transparent"
+            android:button="@drawable/checkbox_custom" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutTextRules2">
+
+        <TextView
             android:id="@+id/textView9"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -116,7 +148,9 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_weight="2"
-            android:button="@drawable/checkbox_custom" />
+            android:button="@drawable/checkbox_custom"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="10dp" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
