@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/btnBackMainConfiguration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -99,7 +99,7 @@
 
         <!-- EditText -->
         <EditText
-            android:id="@+id/setTextMail"
+            android:id="@+id/setTextAnalisis"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
