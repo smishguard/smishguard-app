@@ -1,5 +1,6 @@
 package com.smishguard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,9 +10,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.airbnb.lottie.LottieAnimationView;
+import com.smishguard.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ActivityMainBinding binding;
     private LottieAnimationView lottieButton;
     private ImageView imageOff;
     private boolean isOn = false; // Estado inicial
@@ -20,19 +23,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        lottieButton = findViewById(R.id.lottie_button);
-        imageOff = findViewById(R.id.image_off);
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        lottieButton = binding.lottieButton;
+        imageOff = binding.imageOff;
         lottieButton.setOnClickListener(v -> toggleButton());
         imageOff.setOnClickListener(v -> toggleButton());
+
+        binding.imgViewManualAnalisis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ManualAnalysisActivity.class));
+            }
+        });
+
+        binding.btnConfiguration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ConfigurationActivity.class));
+            }
+        });
     }
 
     private void toggleButton() {

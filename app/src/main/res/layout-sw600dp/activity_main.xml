@@ -63,7 +63,7 @@
                         android:layout_weight="9" />
 
                     <ImageButton
-                        android:id="@+id/imageButton3"
+                        android:id="@+id/btnConfiguration"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -165,7 +165,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/imageView18"
+                    android:id="@+id/imgViewManualAnalisis"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/card_full_2"
