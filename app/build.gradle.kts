@@ -49,4 +49,5 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.airbnb.android:lottie:3.7.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.3")
 }
