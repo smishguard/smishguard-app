@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Capa de sombra -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="22dp"/>
+            <solid android:color="#aaaaaa" /> <!-- Color de sombra con opacidad -->
+            <padding
+                android:left="0sp"
+                android:top="-4sp"
+                android:right="0sp"
+                android:bottom="2sp"/>
+        </shape>
+    </item>
+
+    <!-- Capa del botón -->
+    <item android:left="0dp" android:top="4dp" android:right="0dp" android:bottom="4dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="22dp"/>
+            <solid android:color="#D2D2D2"/>
+        </shape>
+    </item>
+</layer-list>
