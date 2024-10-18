@@ -106,38 +106,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="8"
-            android:textSize="15sp"
-            android:text="Conceder acceso a las notificaciones de tu dispositivo"
-            android:textStyle="bold" />
-
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="2"
-            android:background="@android:color/transparent"
-            android:button="@drawable/checkbox_custom" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutTextRules2">
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8"
             android:text="Conceder acceso a tus contactos"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -148,28 +116,41 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_weight="2"
-            android:button="@drawable/checkbox_custom"
             android:background="@android:color/transparent"
-            android:layout_marginLeft="10dp" />
+            android:button="@drawable/checkbox_custom" />
+
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-    android:id="@+id/btnConfirmSettings"
-    style="@android:style/Widget.Button"
-    android:drawableRight="@drawable/button_confirmed"
-    android:drawablePadding="5dp"
-    android:paddingLeft="15dp"
-    android:paddingRight="3dp"
-    android:layout_width="160dp"
-    android:layout_height="44dp"
-    android:layout_marginTop="40dp"
-    android:background="@drawable/button_background_green"
-    android:text="Confirmar"
-    android:textSize="22sp"
-    android:textColor="@color/white"
-    android:textStyle="normal"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        android:id="@+id/btnConfirmSettings"
+        style="@android:style/Widget.Button"
+        android:layout_width="160dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/button_background_green"
+        android:drawableRight="@drawable/button_confirmed"
+        android:drawablePadding="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="3dp"
+        android:text="Confirmar"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <ImageView
+        android:id="@+id/btnBackMainConfiguration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

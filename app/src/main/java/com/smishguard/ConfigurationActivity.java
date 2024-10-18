@@ -1,8 +1,10 @@
 package com.smishguard;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +29,13 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         // Listener para el botón "Confirmar" usando binding
         binding.btnConfirmSettings.setOnClickListener(v -> requestPermissionsBasedOnCheckboxes());
+
+        binding.btnBackMainConfiguration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ConfigurationActivity.this, MainActivity.class));
+            }
+        });
     }
 
     // Método para solicitar los permisos seleccionados en los checkbox
