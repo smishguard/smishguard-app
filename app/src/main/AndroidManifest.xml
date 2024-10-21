@@ -20,8 +20,11 @@
         <activity android:name=".ConfigurationActivity" />
         <activity android:name=".EducationActivity" />
         <activity android:name=".InboxActivity" />
-        <activity android:name=".InitialActivity"
-            android:exported="true">
+        <activity android:name=".InitialActivity"/>
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

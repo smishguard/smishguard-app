@@ -16,6 +16,7 @@ public class InitialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityInitialBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        ocultarBarrasDeSistema();
         FirebaseApp.initializeApp(this);
 
         binding.btnGoLoginIni.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +32,30 @@ public class InitialActivity extends AppCompatActivity {
                 startActivity(new Intent(InitialActivity.this, RegisterActivity.class));
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(InitialActivity.this, InitialActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ocultarBarrasDeSistema();
+    }
+
+    private void ocultarBarrasDeSistema() {
+        // Método para ocultar las barras del sistema
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     }
 
     // Limpiar el objeto binding cuando se destruya la actividad

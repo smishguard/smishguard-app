@@ -49,12 +49,12 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageButton
-                        android:id="@+id/imageButton2"
+                        android:id="@+id/btnProfile"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        app:srcCompat="@drawable/side_menu" />
+                        app:srcCompat="@drawable/user" />
 
                     <View
                         android:id="@+id/view9"
@@ -111,7 +111,25 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:src="@drawable/button_off"
-                        android:visibility="visible"/>
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/textViewConnectionStatus"
+                        android:layout_width="343dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="247dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginBottom="1dp"
+                        android:text="TextView"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
@@ -148,7 +166,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/imageView17"
+                    android:id="@+id/imgViewInbox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/card_full_1"
@@ -234,7 +252,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/imageView19"
+                    android:id="@+id/imgViewEducation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/card_full_3"
@@ -277,7 +295,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/imageView20"
+                    android:id="@+id/imgViewReportedMessages"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/card_full_4"
@@ -320,7 +338,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/imageView21"
+                    android:id="@+id/imgViewBlockedNumbers"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/card_full_5"
