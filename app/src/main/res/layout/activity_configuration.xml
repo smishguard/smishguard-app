@@ -45,11 +45,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:text="Personaliza SmishGuard \na TU gusto"
-        android:textColor="@color/dark_blue"
-        android:textStyle="bold"
-        android:textSize="22sp"
         android:lineSpacingExtra="10dp"
+        android:text="Personaliza SmishGuard \na tu gusto"
+        android:textColor="@color/dark_blue"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 

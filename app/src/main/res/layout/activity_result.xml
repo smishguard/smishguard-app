@@ -24,6 +24,12 @@
                 android:id="@+id/imageView24"
                 android:layout_width="wrap_content"
                 android:layout_height="87.5dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
                 app:srcCompat="@drawable/message_top_frame" />
 
             <LinearLayout
@@ -64,8 +70,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout17"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="394dp"
+        android:layout_height="163dp"
         android:orientation="vertical"
         android:paddingHorizontal="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,86 +81,60 @@
 
         <TextView
             android:id="@+id/textViewMensajeAnalizado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="333dp"
+            android:layout_height="162dp"
             android:paddingHorizontal="30dp"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView54"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Link:"
-                android:textColor="#c70039"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textViewEnlace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-        </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout16"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/linearLayout19"
+        android:layout_width="336dp"
+        android:layout_height="93dp"
         android:orientation="vertical"
-        android:paddingHorizontal="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout17">
 
         <TextView
-            android:id="@+id/textView55"
+            android:id="@+id/textView54"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Análisis de SmishGuard"
+            android:layout_weight="1"
+            android:text="Link:"
             android:textColor="#c70039"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textViewAnalisisSmishguard"
+            android:id="@+id/textViewEnlace"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_height="6dp"
+            android:layout_weight="4"
+            android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout18"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/linearLayout16"
+        android:layout_width="387dp"
+        android:layout_height="213dp"
         android:orientation="vertical"
         android:paddingHorizontal="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout16">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout19">
 
         <TextView
-            android:id="@+id/textView56"
+            android:id="@+id/textView55"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Análisis de GPT"
+            android:text="Análisis Detallado:"
             android:textColor="#c70039"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -165,54 +145,50 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="395dp"
+        android:layout_height="172dp"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout18">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout16">
 
         <TextView
             android:id="@+id/textView58"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="49dp"
             android:text="Calificación"
             android:textAlignment="center"
             android:textColor="#C70039"
             android:textSize="25sp"
             android:textStyle="bold" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textViewPuntaje"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_background"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="31sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewAnalisisSmishguard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textViewPuntaje"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="textEnd"
-                android:textColor="@color/black"
-                android:textSize="31sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView57"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="/10"
-                android:textColor="@color/black"
-                android:textSize="31sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

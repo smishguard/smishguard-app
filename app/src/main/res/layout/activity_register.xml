@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="5dp"
-        android:text="Inicie sesión o regístrese"
+        android:text="Inicia sesión o regístrate"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
