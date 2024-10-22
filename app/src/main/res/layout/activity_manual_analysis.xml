@@ -78,17 +78,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="En esta sección podrá realizar el análisis de mensajes y links de su preferencia" />
-
-        <TextView
-            android:id="@+id/textView25"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:textSize="15sp"
-            android:text="Pegue o escriba su mensaje en el cuadro y presione analizar para ver los resultados del mensje" />
+            android:text="En esta sección podrás realizar el análisis de mensajes y links de tu preferencia"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -126,7 +118,7 @@
                 android:inputType="textMultiLine"
                 android:padding="10dp"
                 android:textColor="#040404"
-                android:textSize="13sp" />
+                android:textSize="16sp" />
         </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatButton

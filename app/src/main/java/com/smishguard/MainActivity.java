@@ -2,6 +2,7 @@ package com.smishguard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private LottieAnimationView lottieButton;
     private ImageView imageOff;
     private TextView connectionStatusText;
+    private boolean doubleBackToExitPressedOnce = false;
     private boolean isOn = false; // Estado inicial
     private static final String PING_URL = "https://smishguard-api-gateway.onrender.com/ping";
 
@@ -101,11 +103,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(MainActivity.this, MainActivity.class);
-        // Estas banderas crean una nueva tarea con MainActivity y eliminan todas las actividades anteriores
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+        if (doubleBackToExitPressedOnce) {
+            // Si el botón se presionó dos veces en el intervalo, salir de la aplicación
+            super.onBackPressed();
+            finishAffinity();
+            return;
+        }
+
+        // Mostrar el mensaje para presionar nuevamente
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Presiona nuevamente para salir de la aplicación", Toast.LENGTH_SHORT).show();
+
+        // Reiniciar el estado después de 2 segundos
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 2000);
     }
 
     private void ocultarBarrasDeSistema() {

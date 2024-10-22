@@ -48,6 +48,7 @@ public class ManualAnalysisActivity extends AppCompatActivity {
             if (TextUtils.isEmpty(mensaje)) {
                 Toast.makeText(ManualAnalysisActivity.this, "Por favor ingrese un mensaje para analizar.", Toast.LENGTH_SHORT).show();
             } else {
+                Toast.makeText(ManualAnalysisActivity.this, "Analizando...", Toast.LENGTH_SHORT).show();
                 // Enviar la solicitud al backend Flask
                 enviarSolicitudAnalisis(mensaje);
             }
