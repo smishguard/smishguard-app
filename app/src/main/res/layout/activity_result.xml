@@ -121,8 +121,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout16"
-        android:layout_width="387dp"
-        android:layout_height="213dp"
+        android:layout_width="385dp"
+        android:layout_height="243dp"
         android:orientation="vertical"
         android:paddingHorizontal="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -141,8 +141,8 @@
 
         <TextView
             android:id="@+id/textViewAnalisisGpt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="332dp"
+            android:layout_height="192dp"
             android:layout_marginTop="15dp"
             android:textColor="@color/black"
             android:textSize="16sp" />

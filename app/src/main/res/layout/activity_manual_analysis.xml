@@ -114,7 +114,7 @@
                 android:layout_toEndOf="@id/logoImage"
                 android:background="@drawable/textbox_mail_blank"
                 android:gravity="start|top"
-                android:hint="ingrese el mensaje que desea analizar"
+                android:hint="Ingresa el mensaje que deseas analizar"
                 android:inputType="textMultiLine"
                 android:padding="10dp"
                 android:textColor="#040404"
