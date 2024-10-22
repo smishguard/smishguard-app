@@ -1,6 +1,7 @@
 package com.smishguard;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,6 +54,45 @@ public class ProfileActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
+
+        binding.btnGoX.setOnClickListener(view -> openTwitterProfile());
+        binding.btnGoInstagram.setOnClickListener(view -> openInstagramProfile());
+
+    }
+
+    private void openTwitterProfile() {
+        String twitterUsername = "SmishGuard";
+
+        // Intent para abrir la aplicación de Twitter
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("twitter://user?screen_name=" + twitterUsername));
+            intent.setPackage("com.twitter.android");
+            startActivity(intent);
+        } catch (Exception e) {
+            // Si no está instalada la aplicación, abrir en el navegador
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://twitter.com/" + twitterUsername));
+            startActivity(intent);
+        }
+    }
+
+    private void openInstagramProfile() {
+        String instagramUsername = "SmishGuard";
+
+        // Intent para abrir la aplicación de Instagram
+        Uri uri = Uri.parse("http://instagram.com/_u/" + instagramUsername);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        intent.setPackage("com.instagram.android");
+
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            // Si no está instalada la aplicación, abrir en el navegador
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://instagram.com/" + instagramUsername));
+            startActivity(webIntent);
+        }
     }
 
     @Override

@@ -29,15 +29,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_alignParentStart="true"
 
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="-1dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="3dp"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingHorizontal="30dp">
 
                 <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/btnBackResult"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:background="@android:color/transparent"
                     app:srcCompat="@drawable/back" />
 
@@ -88,7 +94,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Link:"
-                android:textAlignment="center"
                 android:textColor="#c70039"
                 android:textSize="18sp"
                 android:textStyle="bold" />

@@ -1,5 +1,6 @@
 package com.smishguard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,11 +25,25 @@ public class ResultActivity extends AppCompatActivity {
         int puntaje = getIntent().getIntExtra("puntaje", -1);  // -1 por defecto si no se encuentra
 
         // Mostrar los datos en los TextView correspondientes
-        binding.textViewMensajeAnalizado.setText("Mensaje Analizado: " + mensajeAnalizado);
-        binding.textViewAnalisisSmishguard.setText("Análisis SmishGuard: " + analisisSmishguard);
-        binding.textViewAnalisisGpt.setText("Análisis GPT: " + analisisGpt);
-        binding.textViewEnlace.setText("Enlace: " + enlace);
-        binding.textViewPuntaje.setText("Puntaje: " + puntaje);
+        binding.textViewMensajeAnalizado.setText("" + mensajeAnalizado);
+        binding.textViewAnalisisSmishguard.setText("" + analisisSmishguard);
+        binding.textViewAnalisisGpt.setText("" + analisisGpt);
+        binding.textViewEnlace.setText("" + enlace);
+        binding.textViewPuntaje.setText("" + puntaje);
+
+        // Botón para regresar a la pantalla principal
+        binding.btnBackResult.setOnClickListener(view -> {
+            startActivity(new Intent(ResultActivity.this, MainActivity.class));
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(ResultActivity.this, MainActivity.class);
+        // Estas banderas crean una nueva tarea con MainActivity y eliminan todas las actividades anteriores
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     @Override
