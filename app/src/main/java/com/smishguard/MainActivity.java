@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     Toast.makeText(MainActivity.this, "Error al contactar con el servidor", Toast.LENGTH_SHORT).show();
                     actualizarEstadoBoton(false);  // Apagar el botón
-                    actualizarEstadoConexion("Desconectado, estamos trabajando para volver lo más pronto posible :(");  // Mostrar el estado de desconexión
+                    actualizarEstadoConexion("OFLINE");  // Mostrar el estado de desconexión
                 });
             }
 
@@ -142,16 +142,15 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     // Si el ping es exitoso, encender el botón y mostrar "Conectado"
                     runOnUiThread(() -> {
-                        Toast.makeText(MainActivity.this, "Conexión exitosa con el servidor", Toast.LENGTH_SHORT).show();
                         actualizarEstadoBoton(true);  // Encender el botón
-                        actualizarEstadoConexion("Conectado, todos nuestros servicios están en linea :)");  // Mostrar el estado de conexión
+                        actualizarEstadoConexion("ONLINE");  // Mostrar el estado de conexión
                     });
                 } else {
                     // Si la respuesta no es exitosa, mantener el botón apagado y mostrar "Desconectado"
                     runOnUiThread(() -> {
                         Toast.makeText(MainActivity.this, "Fallo en la conexión con el servidor", Toast.LENGTH_SHORT).show();
                         actualizarEstadoBoton(false);  // Apagar el botón
-                        actualizarEstadoConexion("Desconectado, estamos trabajando para volver lo más pronto posible :(");  // Mostrar el estado de desconexión
+                        actualizarEstadoConexion("OFLINE");  // Mostrar el estado de desconexión
                     });
                 }
             }

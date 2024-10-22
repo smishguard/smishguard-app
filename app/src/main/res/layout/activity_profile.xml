@@ -193,7 +193,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7">
 
         <ImageButton
-            android:id="@+id/btnSupportX"
+            android:id="@+id/btnGoX"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -203,7 +203,7 @@
             app:srcCompat="@drawable/x_logo" />
 
         <ImageButton
-            android:id="@+id/btnSupportInstagram"
+            android:id="@+id/btnGoInstagram"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
