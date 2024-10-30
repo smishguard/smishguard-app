@@ -34,9 +34,9 @@
                 android:paddingHorizontal="30dp">
 
                 <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/btnBackMessage"
+                    android:layout_width="44dp"
+                    android:layout_height="58dp"
                     android:background="@android:color/transparent"
                     app:srcCompat="@drawable/back" />
 
@@ -57,8 +57,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout9"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="379dp"
+        android:layout_height="354dp"
         android:layout_marginTop="30dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
 
         <TextView
-            android:id="@+id/textView43"
+            android:id="@+id/textViewBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="30dp"
@@ -78,8 +78,38 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="30dp">
+
+            <TextView
+                android:id="@+id/textView45"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Remitente: "
+                android:textAlignment="center"
+                android:textColor="#c70039"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="123456789"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="50dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
             android:paddingHorizontal="30dp">
 
@@ -88,18 +118,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Link:"
+                android:text="Recibido el: "
                 android:textAlignment="center"
                 android:textColor="#c70039"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView45"
+                android:id="@+id/textViewDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:text="https://testamosrobando.com"
+                android:text="22/11/2024"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
@@ -107,6 +137,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout18"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
@@ -118,7 +149,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button2"
+            android:id="@+id/btnAnalyze"
             style="@android:style/Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

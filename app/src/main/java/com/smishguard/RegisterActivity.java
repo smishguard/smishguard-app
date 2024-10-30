@@ -41,7 +41,10 @@ public class RegisterActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                // Crear un intent para MainActivity con el extra showGuide
+                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                intent.putExtra("showGuide", true); // Enviar el extra para mostrar la guía
+                                startActivity(intent);
                                 finish();
                             } else {
                                 Toast.makeText(RegisterActivity.this, "Error en el registro: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();

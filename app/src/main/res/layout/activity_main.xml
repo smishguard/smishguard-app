@@ -63,12 +63,12 @@
                         android:layout_weight="9" />
 
                     <ImageButton
-                        android:id="@+id/btnConfiguration"
+                        android:id="@+id/btnGuide"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        app:srcCompat="@drawable/settings" />
+                        app:srcCompat="@drawable/question" />
                 </LinearLayout>
 
                 <TextView
@@ -121,10 +121,10 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginTop="247dp"
-                        android:layout_marginEnd="25dp"
-                        android:layout_marginBottom="1dp"
+                        android:layout_marginStart="27dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="23dp"
+                        android:layout_marginBottom="246dp"
                         android:text="OFFLINE"
                         android:textAlignment="center"
                         android:textColor="@color/white"
@@ -195,7 +195,7 @@
                         android:id="@+id/textView15"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Revisa los mensajes\nanalizados"
+                        android:text="Revisa tu bandeja\nde entrada y elige\nun mensaje a analizar"
                         android:layout_marginTop="20dp"
                         android:textAlignment="center"
                         android:textColor="#D4013A"
@@ -240,7 +240,7 @@
                         android:id="@+id/textView17"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Analiza mensajes o\nenlaces sospechosos"
+                        android:text="Analiza mensajes especificos o\nenlaces sospechosos"
                         android:layout_marginTop="20dp"
                         android:textAlignment="center"
                         android:textColor="#D4013A"
@@ -285,7 +285,7 @@
                         android:id="@+id/textView19"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Aprende sobre\nseguridad y protección"
+                        android:text="Aprende sobre\nSmishing\ny como protegerte"
                         android:layout_marginTop="20dp"
                         android:textAlignment="center"
                         android:textColor="#D4013A"
@@ -320,7 +320,7 @@
                         android:id="@+id/textView20"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Mensajes\nReportados"
+                        android:text="Mensajes\nAnalizados"
                         android:layout_marginTop="50dp"
                         android:textAlignment="center"
                         android:textSize="25sp"
@@ -330,7 +330,7 @@
                         android:id="@+id/textView21"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Consulta los mensajes\nque has reportado"
+                        android:text="Consulta los mensajes\nque has analizado"
                         android:layout_marginTop="20dp"
                         android:textAlignment="center"
                         android:textColor="#D4013A"

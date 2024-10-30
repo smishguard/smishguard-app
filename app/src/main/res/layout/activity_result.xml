@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <!-- Header Layout -->
     <LinearLayout
         android:id="@+id/linearLayout15"
         android:layout_width="0dp"
@@ -28,20 +29,12 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
                 android:layout_marginEnd="0dp"
                 app:srcCompat="@drawable/message_top_frame" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="-1dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="3dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingHorizontal="30dp">
@@ -55,7 +48,7 @@
 
                 <TextView
                     android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Resultado"
@@ -65,13 +58,13 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </RelativeLayout>
-
     </LinearLayout>
 
+    <!-- Mensaje Analizado Section -->
     <LinearLayout
         android:id="@+id/linearLayout17"
-        android:layout_width="394dp"
-        android:layout_height="163dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,31 +72,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout15">
 
-        <TextView
-            android:id="@+id/textViewMensajeAnalizado"
-            android:layout_width="333dp"
-            android:layout_height="162dp"
-            android:paddingHorizontal="30dp"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+        <ScrollView
+            android:layout_width="350dp"
+            android:layout_height="130dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewMensajeAnalizado"
+                    android:layout_width="333dp"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="30dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
+    <!-- Link Section -->
+
+    <!-- Análisis Detallado Section -->
+
+    <!-- Calificación Section -->
+
+    <!-- Buttons Section -->
     <LinearLayout
         android:id="@+id/linearLayout19"
-        android:layout_width="336dp"
-        android:layout_height="93dp"
-        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="30dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout17">
 
         <TextView
             android:id="@+id/textView54"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="Link:"
             android:textColor="#c70039"
             android:textSize="18sp"
@@ -111,22 +123,24 @@
 
         <TextView
             android:id="@+id/textViewEnlace"
-            android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout16"
-        android:layout_width="385dp"
-        android:layout_height="243dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         android:paddingHorizontal="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout19">
 
@@ -139,29 +153,42 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textViewAnalisisGpt"
-            android:layout_width="332dp"
-            android:layout_height="192dp"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewAnalisisGpt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="395dp"
-        android:layout_height="172dp"
+        android:id="@+id/linearLayout20"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout16">
 
         <TextView
             android:id="@+id/textView58"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="wrap_content"
             android:text="Calificación"
             android:textAlignment="center"
             android:textColor="#C70039"
@@ -170,7 +197,7 @@
 
         <TextView
             android:id="@+id/textViewPuntaje"
-            android:layout_width="137dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_background"
             android:paddingHorizontal="20dp"
@@ -185,11 +212,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textColor="@color/black"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout20"
+        app:layout_constraintVertical_bias="0.3">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnShareReport"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/button_background_red"
+            android:text="COMPARTIR REPORTE"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBlockNumber"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background_red"
+            android:text="BLOQUEAR NUMERO"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
