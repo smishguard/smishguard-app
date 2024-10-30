@@ -11,6 +11,7 @@
         android:layout_width="394dp"
         android:layout_height="125dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/profile_frame_top" />
 
@@ -92,8 +93,8 @@
 
             <TextView
                 android:id="@+id/textView22"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="9dp"
+                android:layout_height="match_parent"
                 android:layout_weight="25"
                 android:text="ID: "
                 android:textSize="18sp"
@@ -101,11 +102,11 @@
 
             <TextView
                 android:id="@+id/textViewProfileID"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="4dp"
+                android:layout_height="46dp"
                 android:layout_weight="75"
                 android:text="018000976"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -115,8 +116,8 @@
 
             <TextView
                 android:id="@+id/textView30"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="9dp"
+                android:layout_height="match_parent"
                 android:layout_weight="25"
                 android:text="Email: "
                 android:textSize="18sp"
@@ -124,10 +125,11 @@
 
             <TextView
                 android:id="@+id/textViewProfileEmail"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="9dp"
+                android:layout_height="46dp"
                 android:layout_weight="75"
-                android:text=" juanadarco@javeriana.edu.co" />
+                android:text=" juanadarco@javeriana.edu.co"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -137,8 +139,8 @@
 
             <TextView
                 android:id="@+id/textView32"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="12dp"
+                android:layout_height="match_parent"
                 android:layout_weight="25"
                 android:text="Creación: "
                 android:textSize="18sp"
@@ -146,95 +148,23 @@
 
             <TextView
                 android:id="@+id/textViewProfileDate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="22dp"
+                android:layout_height="46dp"
                 android:layout_weight="75"
-                android:text="20/10/2024" />
+                android:text="20/10/2024"
+                android:textSize="18sp" />
         </LinearLayout>
 
     </LinearLayout>
-
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="30dp"
-        android:background="@color/dark_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="328dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="36dp"
-        android:text="Nuestras Redes Sociales"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
-    <LinearLayout
-        android:id="@+id/linearLayoutSupport"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="30dp"
-        android:background="@android:color/transparent"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7">
-
-        <ImageButton
-            android:id="@+id/btnGoX"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/x_logo" />
-
-        <ImageButton
-            android:id="@+id/btnGoInstagram"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/instagram_logo" />
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="1.5dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_weight="1"
-        android:background="@color/dark_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutSupport" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="50dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="@+id/divider2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         tools:layout_editor_absoluteX="30dp">
 
         <androidx.appcompat.widget.AppCompatButton
@@ -242,7 +172,6 @@
             style="@android:style/Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
             android:layout_weight="5"
             android:background="@drawable/button_background_blue"
             android:text="Soporte"

@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.airbnb.lottie.LottieAnimationView;
 import com.smishguard.databinding.ActivityMainBinding;
 import okhttp3.Call;
@@ -16,6 +20,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
+import android.app.Dialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
         lottieButton.setOnClickListener(v -> enviarPingAlBackend());
         imageOff.setOnClickListener(v -> enviarPingAlBackend());
 
+        // Verificar si el intent contiene el extra "showGuide"
+        if (getIntent().getBooleanExtra("showGuide", false)) {
+            showPhotoDialog();
+        }
+
         binding.imgViewInbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         binding.imgViewReportedMessages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ReportedMessagesActivity.class));
+                startActivity(new Intent(MainActivity.this, AnalyzedMessagesActivity.class));
             }
         });
 
@@ -87,12 +100,41 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.btnConfiguration.setOnClickListener(new View.OnClickListener() {
+        binding.btnGuide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ConfigurationActivity.class));
+                showPhotoDialog();
             }
         });
+    }
+
+    private void showPhotoDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_guide);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        ViewPager2 viewPager = dialog.findViewById(R.id.viewPager);
+        TabLayout tabLayout = dialog.findViewById(R.id.tabLayout);
+        ImageView btnClose = dialog.findViewById(R.id.btnClose);  // Obtén la referencia al botón "X"
+
+        // Lista de imágenes para el tutorial
+        List<Integer> photos = Arrays.asList(
+                R.drawable.guide1, R.drawable.guide2, R.drawable.guide3, R.drawable.guide4
+        );
+
+        // Configurar el adaptador del ViewPager
+        PhotoPagerAdapter adapter = new PhotoPagerAdapter(this, photos);
+        viewPager.setAdapter(adapter);
+
+        // Configurar TabLayout como indicador del ViewPager
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+            // No es necesario agregar nada aquí
+        }).attach();
+
+        // Configura el botón de cierre para que cierre el diálogo
+        btnClose.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
     }
 
     @Override

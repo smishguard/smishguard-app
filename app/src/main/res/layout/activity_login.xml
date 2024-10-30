@@ -102,15 +102,16 @@
         style="@android:style/Widget.Button"
         android:layout_width="166dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/button_background_blue"
         android:text="Login"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setTextPasswordL" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/btnGoRegister"
@@ -142,5 +143,19 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnGoRegister" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="309dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="4dp"
+        android:text="La contraseña debe contener al menos 6 caracteres, 1 minuscula, 1 mayuscula y 1 caracter especial"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="8sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextPasswordL" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
