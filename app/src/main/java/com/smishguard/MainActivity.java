@@ -49,9 +49,13 @@ public class MainActivity extends AppCompatActivity {
         // Enviar el ping cuando se abre la pantalla
         enviarPingAlBackend();
 
-        // Al hacer clic en el botón, vuelve a intentar enviar el ping
-        lottieButton.setOnClickListener(v -> enviarPingAlBackend());
-        imageOff.setOnClickListener(v -> enviarPingAlBackend());
+        try{
+            // Al hacer clic en el botón, vuelve a intentar enviar el ping
+            lottieButton.setOnClickListener(v -> enviarPingAlBackend());
+            imageOff.setOnClickListener(v -> enviarPingAlBackend());
+        }catch(Exception e){
+            Toast.makeText(this, "Ha ocurrido un error, intentalo de nuevo más tarde", Toast.LENGTH_SHORT).show();
+        }
 
         // Verificar si el intent contiene el extra "showGuide"
         if (getIntent().getBooleanExtra("showGuide", false)) {
