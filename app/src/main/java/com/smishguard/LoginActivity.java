@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             } else {
-                                Toast.makeText(LoginActivity.this, "Error en el inicio de sesión: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, "Error en el inicio de sesión, el correo o la contraseña es incorrecta", Toast.LENGTH_LONG).show();
                             }
                         });
             }

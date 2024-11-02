@@ -38,6 +38,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".AnalyzedMessagesActivity" />
         <activity android:name=".ResultActivity" />
+        <activity android:name=".ChangeCredentialsActivity" />
         <activity android:name=".SupportActivity" />
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>

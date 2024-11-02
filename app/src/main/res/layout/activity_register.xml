@@ -62,7 +62,7 @@
         android:layout_width="0dp"
         android:layout_height="54.3dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/textbox_background"
         android:drawableLeft="@drawable/mail"
@@ -75,6 +75,28 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/setTextConfirmPassword"
+        android:layout_width="0dp"
+        android:layout_height="54.3dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/textbox_background"
+        android:drawableLeft="@drawable/passw"
+        android:drawablePadding="8dp"
+        android:ems="10"
+        android:hint="Confirmar Contraseña"
+        android:inputType="textPassword"
+        android:paddingLeft="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextPasswordR" />
+
+    <!-- Checkbox de Política de Privacidad -->
+
+    <!-- Texto clickeable para Política de Privacidad -->
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/setTextPasswordR"
@@ -91,21 +113,34 @@
         android:inputType="textPassword"
         android:paddingLeft="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setTextMailR" />
 
-    <!-- Checkbox de Política de Privacidad -->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="306dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="84dp"
+        android:text="La contraseña debe contener al menos 6 caracteres, 1 minuscula, 1 mayuscula y 1 caracter especial"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextPasswordR" />
 
-    <!-- Texto clickeable para Política de Privacidad -->
     <LinearLayout
         android:id="@+id/linearLayout12"
         android:layout_width="404dp"
         android:layout_height="58dp"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setTextPasswordR">
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -118,9 +153,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:text="Acepto la "
                 android:textSize="15sp"
-                android:textStyle="bold"
-                android:text="Acepto la " />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewPrivacyPolicy"
@@ -162,7 +197,7 @@
         android:padding="8dp"
         android:text="¿Ya tienes una cuenta?"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

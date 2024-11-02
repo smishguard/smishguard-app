@@ -154,7 +154,7 @@
         android:layout_width="351dp"
         android:layout_height="55dp"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -163,8 +163,8 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSupport"
             style="@android:style/Widget.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="175dp"
+            android:layout_height="match_parent"
             android:layout_weight="5"
             android:background="@drawable/button_background_blue"
             android:text="Soporte"
@@ -173,13 +173,13 @@
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnCloseSession"
+            android:id="@+id/btnChangeCredentials"
             style="@android:style/Widget.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="170dp"
+            android:layout_height="match_parent"
             android:layout_weight="5"
             android:background="@drawable/button_background_blue"
-            android:text="Cerrar Sesión"
+            android:text="Cambiar Credenciales"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -188,69 +188,32 @@
 
     <LinearLayout
         android:id="@+id/linearLayout10"
-        android:layout_width="413dp"
-        android:layout_height="194dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="353dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-        <LinearLayout
-            android:id="@+id/linearLayout11"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCloseSession"
+            style="@android:style/Widget.Button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="36dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="Si deseas modificar tu correo electronico, agrega acá la nueva dirección a la cual quieres cambiar"
-                android:textAlignment="center"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/setTextNewMail"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="@drawable/textbox_background"
-                android:drawableLeft="@drawable/mail"
-                android:drawablePadding="8dp"
-                android:hint="Correo"
-                android:inputType="textEmailAddress"
-                android:paddingLeft="20dp"
-                android:textColorHint="#808080"
-                android:textStyle="bold" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnChangeMail"
-                style="@android:style/Widget.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/button_background_blue"
-                android:text="Cambiar Correo"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
+            android:layout_weight="1"
+            android:background="@drawable/button_background_blue"
+            android:text="Cerrar Sesión"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="406dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="348dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
