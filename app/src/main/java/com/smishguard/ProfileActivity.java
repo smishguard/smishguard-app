@@ -1,9 +1,10 @@
 package com.smishguard;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,33 +22,31 @@ public class ProfileActivity extends AppCompatActivity {
 
         ocultarBarrasDeSistema();
 
-        // Obtener el usuario actualmente autenticado
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
-            // Mostrar la información del usuario en los TextView correspondientes
             binding.textViewProfileID.setText(currentUser.getUid());
             binding.textViewProfileEmail.setText(currentUser.getEmail());
             binding.textViewProfileDate.setText(currentUser.getMetadata() != null
                     ? android.text.format.DateFormat.format("dd/MM/yyyy", currentUser.getMetadata().getCreationTimestamp()).toString()
                     : "N/A");
         } else {
-            // Manejar el caso en el que no hay un usuario autenticado
             binding.textViewProfileID.setText("N/A");
             binding.textViewProfileEmail.setText("N/A");
             binding.textViewProfileDate.setText("N/A");
         }
 
-        // Botón para regresar a la pantalla principal
         binding.btnBackProfile.setOnClickListener(view -> {
             startActivity(new Intent(ProfileActivity.this, MainActivity.class));
         });
 
-        // Botón para regresar a la pantalla principal
         binding.btnSupport.setOnClickListener(view -> {
             startActivity(new Intent(ProfileActivity.this, SupportActivity.class));
         });
 
-        // Botón para cerrar sesión
+        binding.btnChangeCredentials.setOnClickListener(view -> {
+            startActivity(new Intent(ProfileActivity.this, ChangeCredentialsActivity.class));
+        });
+
         binding.btnCloseSession.setOnClickListener(view -> {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(ProfileActivity.this, InitialActivity.class);
@@ -55,6 +54,28 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        binding.btnDeleteAccount.setOnClickListener(view -> {
+            if (currentUser != null) {
+                new AlertDialog.Builder(this)
+                        .setTitle("Eliminar Cuenta")
+                        .setMessage("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.")
+                        .setPositiveButton("Eliminar", (dialog, which) -> {
+                            currentUser.delete()
+                                    .addOnCompleteListener(task -> {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(ProfileActivity.this, "Cuenta eliminada exitosamente", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(ProfileActivity.this, InitialActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(intent);
+                                        } else {
+                                            Toast.makeText(ProfileActivity.this, "Error al eliminar la cuenta: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                        })
+                        .setNegativeButton("Cancelar", null)
+                        .show();
+            }
+        });
     }
 
     @Override
