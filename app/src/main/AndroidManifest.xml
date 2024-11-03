@@ -44,9 +44,7 @@
         <activity android:name=".AdminProfileActivity" />
         <activity android:name=".AdminAlertMessagesActivity" />
         <activity android:name=".AdminSupportCommentsActivity" />
-        <activity android:name=".AdminPostAlertActivity" />
         <activity android:name=".AdminStaticsSmishguardActivity" />
-        <activity android:name=".AdminSupportCommentActivity" />
         <activity android:name=".AdminUpdateEducationActivity" />
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
