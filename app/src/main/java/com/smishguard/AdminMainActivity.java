@@ -52,7 +52,7 @@ public class AdminMainActivity extends AppCompatActivity {
         binding.imgPostAlert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminMainActivity.this, AdminPostAlertActivity.class));
+                startActivity(new Intent(AdminMainActivity.this, AdminAlertMessagesActivity.class));
             }
         });
 
@@ -66,7 +66,7 @@ public class AdminMainActivity extends AppCompatActivity {
         binding.imgViewSupportComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminMainActivity.this, AdminInboxSupportActivity.class));
+                startActivity(new Intent(AdminMainActivity.this, AdminSupportCommentsActivity.class));
             }
         });
 

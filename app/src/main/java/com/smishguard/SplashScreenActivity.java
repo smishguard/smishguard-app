@@ -2,17 +2,16 @@ package com.smishguard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Set;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SplashScreenActivity extends AppCompatActivity {
+
+    private static final String TAG = "SplashScreenActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,42 +22,44 @@ public class SplashScreenActivity extends AppCompatActivity {
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
-            // Verificar si el UID del usuario está en la lista de administradores
-            if (isAdmin(userId)) {
-                // Si es administrador, redirigir a AdminMainActivity
-                Intent intent = new Intent(SplashScreenActivity.this, AdminMainActivity.class);
-                startActivity(intent);
-            } else {
-                // Si no es administrador, redirigir a MainActivity
-                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
+            // Verificar si el UID del usuario está en la colección de administradores
+            checkIfAdmin(userId);
         } else {
             // Si no hay un usuario autenticado, redirigir a LoginActivity
             Intent intent = new Intent(SplashScreenActivity.this, InitialActivity.class);
             startActivity(intent);
+            finish(); // Finalizar la actividad de Splash para que no se pueda volver a ella
         }
-
-        // Finalizar la actividad de Splash para que no se pueda volver a ella
-        finish();
     }
 
-    private boolean isAdmin(String userId) {
-        Set<String> adminIds = new HashSet<>();
+    private void checkIfAdmin(String userId) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        try (InputStream inputStream = getAssets().open("admins_ids.txt");
-             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+        // Buscar el documento en la colección "admins" con el UID del usuario actual
+        db.collection("admins").document(userId).get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            // Si el documento existe, es un administrador
+                            Log.d(TAG, "Usuario es administrador");
+                            Intent intent = new Intent(SplashScreenActivity.this, AdminMainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            // Si no existe, redirigir a MainActivity
+                            Log.d(TAG, "Usuario no es administrador");
+                            Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    } else {
+                        Log.w(TAG, "Error al verificar administrador", task.getException());
+                        // Redirigir a MainActivity en caso de error
+                        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                adminIds.add(line.trim()); // Agregar cada UID a la lista
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Manejar el error aquí si es necesario (puedes mostrar un mensaje de error)
-        }
-
-        // Verificar si el UID del usuario actual está en la lista de administradores
-        return adminIds.contains(userId);
+                    // Finalizar SplashScreen para que no se pueda volver a ella
+                    finish();
+                });
     }
 }
