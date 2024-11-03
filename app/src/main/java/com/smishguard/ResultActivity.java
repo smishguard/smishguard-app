@@ -51,6 +51,13 @@ public class ResultActivity extends AppCompatActivity {
         int puntaje = getIntent().getIntExtra("puntaje", 0);
         String numero = getIntent().getStringExtra("numero");
 
+        // Mostrar u ocultar el botón de reporte según el puntaje
+        if (puntaje > 7) {
+            binding.btnShareReport.setVisibility(View.VISIBLE);
+        } else {
+            binding.btnShareReport.setVisibility(View.GONE);
+        }
+
         if (numero.isEmpty()) {
             numero = JSONObject.NULL.toString();
             binding.btnBlockNumber.setVisibility(View.GONE);

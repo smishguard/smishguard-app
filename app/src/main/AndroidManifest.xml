@@ -42,8 +42,8 @@
         <activity android:name=".SupportActivity" />
         <activity android:name=".AdminMainActivity" />
         <activity android:name=".AdminProfileActivity" />
-        <activity android:name=".AdminInboxAlertsActivity" />
-        <activity android:name=".AdminInboxSupportActivity" />
+        <activity android:name=".AdminAlertMessagesActivity" />
+        <activity android:name=".AdminSupportCommentsActivity" />
         <activity android:name=".AdminPostAlertActivity" />
         <activity android:name=".AdminStaticsSmishguardActivity" />
         <activity android:name=".AdminSupportCommentActivity" />
