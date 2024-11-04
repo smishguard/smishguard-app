@@ -43,7 +43,7 @@ public class AdminSupportCommentsActivity extends AppCompatActivity {
 
         // Configurar el RecyclerView
         supportComments = new ArrayList<>();
-        adapter = new SupportCommentsAdapter(supportComments);
+        adapter = new SupportCommentsAdapter(supportComments, this); // Pasar el contexto como segundo argumento
         binding.recyclerViewSupportComments.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerViewSupportComments.setAdapter(adapter);
 
@@ -79,11 +79,12 @@ public class AdminSupportCommentsActivity extends AppCompatActivity {
 
                         for (int i = 0; i < commentsArray.length(); i++) {
                             JSONObject commentJson = commentsArray.getJSONObject(i);
+                            String id = commentJson.getString("_id");  // Extraemos el ID
                             String comentario = commentJson.getString("comentario");
                             String correo = commentJson.getString("correo");
                             String fecha = commentJson.getString("fecha");
 
-                            SupportCommentModel comment = new SupportCommentModel(comentario, correo, fecha);
+                            SupportCommentModel comment = new SupportCommentModel(id, comentario, correo, fecha);
                             supportComments.add(comment);
                         }
 

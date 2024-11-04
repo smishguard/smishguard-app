@@ -65,6 +65,17 @@
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDeleteAlert"
+                style="@android:style/Widget.Button"
+                android:layout_width="129dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background_red"
+                android:gravity="center"
+                android:text="Eliminar Alerta"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
         </LinearLayout>
     </LinearLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>
