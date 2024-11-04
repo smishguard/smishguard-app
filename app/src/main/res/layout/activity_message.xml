@@ -21,45 +21,51 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView18"
-                android:layout_width="match_parent"
-                android:layout_height="87.5dp"
-                app:srcCompat="@drawable/message_top_frame" />
+                android:id="@+id/imageView11"
+                android:layout_width="wrap_content"
+                android:layout_height="115dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                app:srcCompat="@drawable/inbox_top_frame" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp">
+            <ImageButton
+                android:id="@+id/btnBackMessage"
+                android:layout_width="67dp"
+                android:layout_height="73dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/back" />
 
-                <ImageButton
-                    android:id="@+id/btnBackMessage"
-                    android:layout_width="44dp"
-                    android:layout_height="58dp"
-                    android:background="@android:color/transparent"
-                    app:srcCompat="@drawable/back" />
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Mensaje"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="43dp"
+                android:layout_marginEnd="94dp"
+                android:layout_weight="1"
+                android:text="Mensaje"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout9"
-        android:layout_width="379dp"
-        android:layout_height="354dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="383dp"
+        android:layout_height="480dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.2"

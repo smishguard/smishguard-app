@@ -45,6 +45,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation ("com.google.firebase:firebase-storage:20.0.0")
+    implementation ("com.google.firebase:firebase-core:21.0.0")
     implementation ("com.google.firebase:firebase-firestore:24.0.0")
     implementation ("com.google.android.material:material:1.4.0")
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
@@ -53,4 +55,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.airbnb.android:lottie:3.7.0")
     implementation ("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
 }

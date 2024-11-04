@@ -32,61 +32,45 @@
                 android:layout_marginEnd="0dp"
                 app:srcCompat="@drawable/inbox_top_frame" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <ImageButton
+                android:id="@+id/btnBackReportedNumbers"
+                android:layout_width="60dp"
+                android:layout_height="63dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="11dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/back" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="267dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp">
-
-                <ImageButton
-                    android:id="@+id/btnBackReportedNumbers"
-                    android:layout_width="44dp"
-                    android:layout_height="52dp"
-                    android:background="@android:color/transparent"
-                    app:srcCompat="@drawable/back" />
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Números Bloqueados"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                android:layout_marginStart="66dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginEnd="3dp"
+                android:layout_toEndOf="@+id/btnBackReportedNumbers"
+                android:layout_weight="1"
+                android:text="Números Bloqueados"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView29"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Contactos"
-        android:textColor="@color/black"
-        android:textSize="21dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        tools:layout_editor_absoluteX="0dp" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBlockedNumbers"
-        android:layout_width="359dp"
-        android:layout_height="516dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="360dp"
+        android:layout_height="594dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
     <LinearLayout
         android:layout_width="0dp"

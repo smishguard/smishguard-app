@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TabLayoutStyle" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabIndicatorGravity">center</item>
+        <item name="tabIndicatorColor">@color/black</item>
+        <item name="tabIndicatorHeight">8dp</item>
+        <item name="tabSelectedTextColor">@color/black</item>
+    </style>
+</resources>

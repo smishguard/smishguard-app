@@ -37,7 +37,7 @@ public class AdminSupportCommentsActivity extends AppCompatActivity {
 
         ocultarBarrasDeSistema();
 
-        binding.btnBackInboxSupport.setOnClickListener(view -> {
+        binding.btnBackSupport.setOnClickListener(view -> {
             startActivity(new Intent(AdminSupportCommentsActivity.this, AdminMainActivity.class));
         });
 

@@ -44,9 +44,9 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                // Crear un intent para MainActivity con el extra showGuide
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                intent.putExtra("showGuide", true); // Enviar el extra para mostrar la guía
+                                // Crear un intent para SplashScreenActivity en lugar de MainActivity
+                                Intent intent = new Intent(LoginActivity.this, SplashScreenActivity.class);
+                                intent.putExtra("showGuide", true); // Enviar el extra si es necesario para otras actividades
                                 startActivity(intent);
                                 finish();
                             } else {

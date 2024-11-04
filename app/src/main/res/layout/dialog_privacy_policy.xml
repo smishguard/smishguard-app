@@ -12,10 +12,14 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnClose"
-        android:layout_width="wrap_content"
+        style="@android:style/Widget.Button"
+        android:layout_width="158dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="CERRAR" />
+        android:background="@drawable/button_background_blue"
+        android:gravity="center"
+        android:text="CERRAR"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
 </LinearLayout>

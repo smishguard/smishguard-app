@@ -41,20 +41,26 @@ public class SplashScreenActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            // Si el documento existe, es un administrador
+                            // Usuario es administrador, redirigir a AdminMainActivity
                             Log.d(TAG, "Usuario es administrador");
                             Intent intent = new Intent(SplashScreenActivity.this, AdminMainActivity.class);
                             startActivity(intent);
                         } else {
-                            // Si no existe, redirigir a MainActivity
+                            // Usuario no es administrador, redirigir a MainActivity y pasar showGuide extra si está presente
                             Log.d(TAG, "Usuario no es administrador");
                             Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+
+                            // Obtener el valor del extra "showGuide" del intent que inició SplashScreenActivity
+                            boolean showGuide = getIntent().getBooleanExtra("showGuide", false);
+                            intent.putExtra("showGuide", showGuide);
+
                             startActivity(intent);
                         }
                     } else {
                         Log.w(TAG, "Error al verificar administrador", task.getException());
                         // Redirigir a MainActivity en caso de error
                         Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        intent.putExtra("showGuide", getIntent().getBooleanExtra("showGuide", false));
                         startActivity(intent);
                     }
 

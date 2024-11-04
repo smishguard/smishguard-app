@@ -26,31 +26,32 @@
                 android:layout_height="115dp"
                 app:srcCompat="@drawable/inbox_top_frame" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp">
+            <ImageButton
+                android:id="@+id/btnBackSupport"
+                android:layout_width="59dp"
+                android:layout_height="66dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/back" />
 
-                <ImageButton
-                    android:id="@+id/btnBackInboxSupport"
-                    android:layout_width="47dp"
-                    android:layout_height="54dp"
-                    android:background="@android:color/transparent"
-                    app:srcCompat="@drawable/back" />
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Comentarios"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginEnd="12dp"
+                android:layout_toEndOf="@+id/btnBackSupport"
+                android:text="Bandeja de Entrada"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -60,6 +61,7 @@
         android:id="@+id/recyclerViewSupportComments"
         android:layout_width="355dp"
         android:layout_height="626dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
