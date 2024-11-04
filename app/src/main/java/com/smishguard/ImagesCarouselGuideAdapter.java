@@ -34,7 +34,7 @@ public class ImagesCarouselGuideAdapter extends RecyclerView.Adapter<ImagesCarou
         // Ajusta la imagen usando Glide o una librería similar
         Glide.with(context)
                 .load(photos.get(position))
-                .centerCrop()  // Este ajuste asegura que la imagen ocupe todo el espacio del ImageView
+                .centerCrop()
                 .into(holder.imageView);
     }
 
