@@ -24,56 +24,53 @@
                 android:id="@+id/imageView11"
                 android:layout_width="wrap_content"
                 android:layout_height="115dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
                 app:srcCompat="@drawable/inbox_top_frame" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp">
+            <ImageButton
+                android:id="@+id/btnBackInbox"
+                android:layout_width="59dp"
+                android:layout_height="66dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/back" />
 
-                <ImageButton
-                    android:id="@+id/btnBackInbox"
-                    android:layout_width="59dp"
-                    android:layout_height="66dp"
-                    android:background="@android:color/transparent"
-                    app:srcCompat="@drawable/back" />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="255dp"
+                android:layout_height="69dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="75dp"
+                android:layout_marginTop="37dp"
+                android:layout_marginEnd="7dp"
+                android:layout_toEndOf="@+id/btnBackInbox"
+                android:text="Bandeja de Entrada"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bandeja de Entrada"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView29"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Mensajes"
-        android:textColor="@color/black"
-        android:textSize="21dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSms"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

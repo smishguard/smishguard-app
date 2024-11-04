@@ -7,32 +7,36 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import java.util.List;
 
-public class PhotoPagerAdapter extends RecyclerView.Adapter<PhotoPagerAdapter.PhotoViewHolder> {
-    private List<Integer> imageList; // IDs de imágenes o URLs
-    private Context context;
+public class ImagesCarouselEducationAdapter extends RecyclerView.Adapter<ImagesCarouselEducationAdapter.PhotoViewHolder> {
 
-    public PhotoPagerAdapter(Context context, List<Integer> imageList) {
+    private final List<String> imageUrls;
+    private final Context context;
+
+    public ImagesCarouselEducationAdapter(Context context, List<String> imageUrls) {
         this.context = context;
-        this.imageList = imageList;
+        this.imageUrls = imageUrls;
     }
 
     @NonNull
     @Override
     public PhotoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_photo, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image_education, parent, false);
         return new PhotoViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PhotoViewHolder holder, int position) {
-        holder.imageView.setImageResource(imageList.get(position)); // Configura la imagen
+        Glide.with(context)
+                .load(imageUrls.get(position))
+                .into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
-        return imageList.size();
+        return imageUrls.size();
     }
 
     public static class PhotoViewHolder extends RecyclerView.ViewHolder {

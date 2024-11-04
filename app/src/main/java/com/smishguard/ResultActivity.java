@@ -17,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicBoolean;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -51,24 +52,19 @@ public class ResultActivity extends AppCompatActivity {
         int puntaje = getIntent().getIntExtra("puntaje", 0);
         String numero = getIntent().getStringExtra("numero");
 
-        // Mostrar u ocultar el botón de reporte según el puntaje
+        // Establecer visibilidad inicial de los botones en función del puntaje
         if (puntaje > 7) {
-            binding.btnShareReport.setVisibility(View.VISIBLE);
+            verificarMensajeReportado(mensajeAnalizado, analisisSmishguard, analisisGpt, enlace, puntaje);
         } else {
             binding.btnShareReport.setVisibility(View.GONE);
+            binding.textViewInfo.setVisibility(View.GONE);
         }
 
-        if (numero.isEmpty()) {
-            numero = JSONObject.NULL.toString();
-            binding.btnBlockNumber.setVisibility(View.GONE);
+        if (numero != null && !numero.isEmpty()) {
+            verificarNumeroBloqueado(numero);
         } else {
-            String finalNumero = numero;
-            binding.btnBlockNumber.setOnClickListener(view -> {
-                Log.d(TAG, "Botón de bloqueo presionado.");
-                verificarNumeroBloqueado(finalNumero);
-            });
+            binding.btnBlockNumber.setVisibility(View.GONE);
         }
-
 
         binding.textViewMensajeAnalizado.setText(mensajeAnalizado);
         binding.textViewAnalisisSmishguard.setText(analisisSmishguard);
@@ -81,13 +77,21 @@ public class ResultActivity extends AppCompatActivity {
         // Verificar y guardar automáticamente en el historial
         verificarYGuardarHistorial(mensajeAnalizado, analisisSmishguard, analisisGpt, enlace, puntaje, numero);
 
-        binding.btnShareReport.setOnClickListener(view -> {
-            Log.d(TAG, "Botón de reporte presionado.");
-            verificarMensajeReportado(mensajeAnalizado, analisisSmishguard, analisisGpt, enlace, puntaje);
-        });
-
+        // Botón de volver
         binding.btnBackResult.setOnClickListener(view -> {
             startActivity(new Intent(ResultActivity.this, MainActivity.class));
+        });
+
+        // Evento de clic para reportar
+        binding.btnShareReport.setOnClickListener(view -> {
+            Log.d(TAG, "Botón de reporte presionado.");
+            enviarReporte(mensajeAnalizado, analisisSmishguard, analisisGpt, enlace, puntaje);
+        });
+
+        // Evento de clic para bloquear número
+        binding.btnBlockNumber.setOnClickListener(view -> {
+            Log.d(TAG, "Botón de bloqueo presionado.");
+            mostrarConfirmacionBloqueo(numero);
         });
     }
 
@@ -186,57 +190,47 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void verificarMensajeReportado(String mensaje, String analisisSmishguard, String analisisGpt, String enlace, int puntaje) {
-        // Asegúrate de que REPORT_URL esté apuntando al endpoint correcto
         Request request = new Request.Builder()
                 .url(REPORT_URL)
                 .build();
 
-        Log.d(TAG, "Iniciando verificación de mensaje reportado en URL: " + REPORT_URL);
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Log.e(TAG, "Error en la solicitud de verificación de reporte: " + e.getMessage());
-                runOnUiThread(() -> Toast.makeText(ResultActivity.this, "Error en la verificación del reporte", Toast.LENGTH_SHORT).show());
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    String responseData = response.body().string();
-                    Log.d(TAG, "Respuesta de verificación de reporte recibida: " + responseData);
                     try {
-                        // Verifica si el JSON tiene el array esperado
-                        JSONObject jsonObject = new JSONObject(responseData);
-                        if (!jsonObject.has("documentos")) {
-                            Log.e(TAG, "El JSON no contiene el array 'documentos'. Verifica la estructura del JSON.");
-                            runOnUiThread(() -> Toast.makeText(ResultActivity.this, "Error en el formato de la respuesta", Toast.LENGTH_SHORT).show());
-                            return;
-                        }
-
+                        JSONObject jsonObject = new JSONObject(response.body().string());
                         JSONArray historialArray = jsonObject.getJSONArray("documentos");
 
-                        boolean alreadyReported = false;
+                        AtomicBoolean alreadyReported = new AtomicBoolean(false);
+
                         for (int i = 0; i < historialArray.length(); i++) {
                             JSONObject item = historialArray.getJSONObject(i);
-                            // Cambiar a "mensaje" si esa es la clave correcta
                             if (mensaje.equals(item.optString("contenido", ""))) {
-                                alreadyReported = true;
+                                alreadyReported.set(true);
                                 break;
                             }
                         }
 
-                        if (alreadyReported) {
-                            runOnUiThread(() -> Toast.makeText(ResultActivity.this, "Este mensaje ya fue reportado", Toast.LENGTH_SHORT).show());
-                        } else {
-                            runOnUiThread(() -> enviarReporte(mensaje, analisisSmishguard, analisisGpt, enlace, puntaje));
-                        }
+                        runOnUiThread(() -> {
+                            if (alreadyReported.get()) {
+                                binding.btnShareReport.setVisibility(View.GONE);
+                                binding.textViewInfo.setVisibility(View.GONE);
+                            } else {
+                                binding.btnShareReport.setVisibility(View.VISIBLE);
+                                binding.textViewInfo.setVisibility(View.VISIBLE);
+                            }
+                        });
                     } catch (JSONException e) {
-                        Log.e(TAG, "Error procesando la respuesta JSON de reporte: " + e.getMessage());
-                        runOnUiThread(() -> Toast.makeText(ResultActivity.this, "Error en la verificación del reporte", Toast.LENGTH_SHORT).show());
+                        Log.e(TAG, "Error al procesar JSON de verificación de reporte: " + e.getMessage());
                     }
                 } else {
                     Log.e(TAG, "Error en la respuesta de verificación de reporte. Código: " + response.code());
-                    runOnUiThread(() -> Toast.makeText(ResultActivity.this, "Error en la respuesta de verificación de reporte", Toast.LENGTH_SHORT).show());
                 }
             }
         });
@@ -250,47 +244,74 @@ public class ResultActivity extends AppCompatActivity {
                 .url(BLOCK_URL + "/" + userEmail)
                 .build();
 
-        Log.d(TAG, "Iniciando verificación de número bloqueado...");
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Log.e(TAG, "Error en la solicitud de verificación de bloqueo: " + e.getMessage());
-                runOnUiThread(() -> Toast.makeText(ResultActivity.this, "Error en la verificación del bloqueo", Toast.LENGTH_SHORT).show());
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    String responseData = response.body().string();
-                    Log.d(TAG, "Respuesta de verificación de bloqueo recibida.");
                     try {
-                        JSONObject jsonObject = new JSONObject(responseData);
+                        JSONObject jsonObject = new JSONObject(response.body().string());
                         JSONArray numerosArray = jsonObject.getJSONArray("numeros");
 
-                        boolean alreadyBlocked = false;
+                        AtomicBoolean alreadyBlocked = new AtomicBoolean(false);
+
                         for (int i = 0; i < numerosArray.length(); i++) {
                             JSONObject item = numerosArray.getJSONObject(i);
                             if (numero.equals(item.getString("numero"))) {
-                                alreadyBlocked = true;
+                                alreadyBlocked.set(true);
                                 break;
                             }
                         }
 
-                        if (alreadyBlocked) {
-                            runOnUiThread(() -> Toast.makeText(ResultActivity.this, "Este número ya está bloqueado", Toast.LENGTH_SHORT).show());
-                        } else {
-                            runOnUiThread(() -> mostrarConfirmacionBloqueo(numero));
-                        }
+                        runOnUiThread(() -> {
+                            if (alreadyBlocked.get()) {
+                                binding.btnBlockNumber.setVisibility(View.GONE);
+                            } else {
+                                binding.btnBlockNumber.setVisibility(View.VISIBLE);
+                            }
+                        });
                     } catch (JSONException e) {
                         Log.e(TAG, "Error procesando la respuesta JSON de bloqueo: " + e.getMessage());
-                        runOnUiThread(() -> Toast.makeText(ResultActivity.this, "Error en la verificación del bloqueo", Toast.LENGTH_SHORT).show());
                     }
                 } else {
                     Log.e(TAG, "Error en la respuesta de verificación de bloqueo. Código: " + response.code());
-                    runOnUiThread(() -> Toast.makeText(ResultActivity.this, "Error en la respuesta de verificación de bloqueo", Toast.LENGTH_SHORT).show());
                 }
             }
         });
+    }
+
+    private void mostrarConfirmacionBloqueo(String numero) {
+        new AlertDialog.Builder(this)
+                .setTitle("Confirmar bloqueo")
+                .setMessage("¿Estás seguro de que deseas bloquear este número?")
+                .setPositiveButton("Sí", (dialog, which) -> bloquearNumero(numero))
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    private void bloquearNumero(String numero) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userEmail = (user != null) ? user.getEmail() : "usuario@example.com";
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("numero", numero);
+            jsonBody.put("correo", userEmail);
+            Log.d(TAG, "Cuerpo de bloqueo JSON creado: " + jsonBody.toString());
+        } catch (JSONException e) {
+            Log.e(TAG, "Error al crear el cuerpo de bloqueo JSON: " + e.getMessage());
+            Toast.makeText(ResultActivity.this, "Error al crear el cuerpo de la solicitud", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Ocultar el botón inmediatamente al hacer clic
+        binding.btnBlockNumber.setVisibility(View.GONE);
+
+        enviarPost(BLOCK_URL, jsonBody);
     }
 
     private void enviarPost(String url, JSONObject jsonBody) {
@@ -325,7 +346,6 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     private void enviarReporte(String mensaje, String analisisSmishguard, String analisisGpt, String enlace, int puntaje) {
-
         JSONObject jsonBody = new JSONObject();
         try {
             JSONObject analisisObject = new JSONObject();
@@ -348,34 +368,11 @@ public class ResultActivity extends AppCompatActivity {
             return;
         }
 
+        // Ocultar el botón inmediatamente al hacer clic
+        binding.btnShareReport.setVisibility(View.GONE);
+        binding.textViewInfo.setVisibility(View.GONE);
+
         enviarPost(SAVE_REPORT_URL, jsonBody);
-    }
-
-    private void mostrarConfirmacionBloqueo(String numero) {
-        new AlertDialog.Builder(this)
-                .setTitle("Confirmar bloqueo")
-                .setMessage("¿Estás seguro de que deseas bloquear este número?")
-                .setPositiveButton("Sí", (dialog, which) -> bloquearNumero(numero))
-                .setNegativeButton("No", null)
-                .show();
-    }
-
-    private void bloquearNumero(String numero) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String userEmail = (user != null) ? user.getEmail() : "usuario@example.com";
-
-        JSONObject jsonBody = new JSONObject();
-        try {
-            jsonBody.put("numero", numero);
-            jsonBody.put("correo", userEmail);
-            Log.d(TAG, "Cuerpo de bloqueo JSON creado: " + jsonBody.toString());
-        } catch (JSONException e) {
-            Log.e(TAG, "Error al crear el cuerpo de bloqueo JSON: " + e.getMessage());
-            Toast.makeText(ResultActivity.this, "Error al crear el cuerpo de la solicitud", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        enviarPost(BLOCK_URL, jsonBody);
     }
 
     @Override

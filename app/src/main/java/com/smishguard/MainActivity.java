@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
         // Configurar el adaptador del ViewPager
-        PhotoPagerAdapter adapter = new PhotoPagerAdapter(this, photos);
+        ImagesCarouselGuideAdapter adapter = new ImagesCarouselGuideAdapter(this, photos);
         viewPager.setAdapter(adapter);
 
         // Configurar TabLayout como indicador del ViewPager
