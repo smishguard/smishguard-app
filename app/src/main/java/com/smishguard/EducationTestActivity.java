@@ -2,13 +2,31 @@ package com.smishguard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.RadioButton;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.smishguard.databinding.ActivityEducationTestBinding;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.IOException;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class EducationTestActivity extends AppCompatActivity {
 
     private ActivityEducationTestBinding binding;
+    private OkHttpClient client;
+    private static final String MESSAGE_URL = "https://smishguard-api-gateway.onrender.com/mensaje-aleatorio";
+    private static final String TAG = "EducationTestActivity";
+
+    private String correctAnswer; // To store the correct answer ("Es Smishing" or "No es Smishing")
+    private String analysis; // To store the analysis message
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +34,107 @@ public class EducationTestActivity extends AppCompatActivity {
         binding = ActivityEducationTestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        client = new OkHttpClient();
+
         ocultarBarrasDeSistema();
+        loadRandomMessage();
+
+        binding.btnReviewResponse.setOnClickListener(view -> reviewResponse());
+        binding.btnTryAgain.setOnClickListener(view -> tryAgain());
+
+        binding.btnBackEducationTest.setOnClickListener(view -> {
+            startActivity(new Intent(EducationTestActivity.this, EducationActivity.class));
+        });
+    }
+
+    private void loadRandomMessage() {
+        Request request = new Request.Builder()
+                .url(MESSAGE_URL)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Log.e(TAG, "Error loading message: " + e.getMessage());
+                runOnUiThread(() ->
+                        Toast.makeText(EducationTestActivity.this, "Error al cargar el mensaje", Toast.LENGTH_SHORT).show()
+                );
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String responseData = response.body().string();
+                    try {
+                        JSONObject jsonObject = new JSONObject(responseData).getJSONObject("mensaje");
+                        final String messageContent = jsonObject.getString("contenido");
+                        final int ponderado = jsonObject.getJSONObject("analisis").getInt("ponderado");
+                        analysis = jsonObject.getJSONObject("analisis").getString("justificacion_gpt");
+
+                        // Determining the correct answer based on the ponderado threshold
+                        correctAnswer = ponderado > 5 ? "Es Smishing" : "No es Smishing";
+
+                        runOnUiThread(() -> {
+                            binding.textViewMessage.setText(messageContent);
+                            binding.textViewAnalysis.setVisibility(View.GONE); // Hide analysis initially
+                            binding.textViewResult.setVisibility(View.GONE); // Hide result initially
+                            binding.btnTryAgain.setVisibility(View.GONE); // Hide "Try Again" initially
+                        });
+
+                    } catch (JSONException e) {
+                        Log.e(TAG, "Error parsing JSON: " + e.getMessage());
+                    }
+                } else {
+                    Log.e(TAG, "Error in response: " + response.code());
+                }
+            }
+        });
+    }
+
+    private void reviewResponse() {
+        // Get selected answer from RadioGroup
+        int selectedId = binding.radioGroupOpciones.getCheckedRadioButtonId();
+        if (selectedId == -1) {
+            Toast.makeText(this, "Por favor selecciona una respuesta", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        RadioButton selectedRadioButton = findViewById(selectedId);
+        String selectedAnswer = selectedRadioButton.getText().toString();
+
+        // Check if the selected answer is correct
+        boolean isCorrect = selectedAnswer.equals(correctAnswer);
+        binding.textViewResult.setText(isCorrect ? "Correcto" : "Incorrecto");
+        binding.textViewResult.setTextColor(isCorrect ? getColor(android.R.color.holo_green_dark) : getColor(android.R.color.holo_red_dark));
+        binding.textViewResult.setVisibility(View.VISIBLE);
+
+        // Display the analysis
+        binding.textViewAnalysis.setText(analysis);
+        binding.textViewAnalysis.setVisibility(View.VISIBLE);
+
+        // Show the "Try Again" button
+        binding.btnTryAgain.setVisibility(View.VISIBLE);
+    }
+
+    private void tryAgain() {
+        // Hide result and analysis text views
+        binding.textViewResult.setVisibility(View.GONE);
+        binding.textViewAnalysis.setVisibility(View.GONE);
+
+        // Hide "Try Again" button
+        binding.btnTryAgain.setVisibility(View.GONE);
+
+        // Clear the selected radio button
+        binding.radioGroupOpciones.clearCheck();
+
+        // Load a new random message
+        loadRandomMessage();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(EducationTestActivity.this, EducationActivity.class);
-        // Estas banderas crean una nueva tarea con MainActivity y eliminan todas las actividades anteriores
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
@@ -35,7 +146,6 @@ public class EducationTestActivity extends AppCompatActivity {
     }
 
     private void ocultarBarrasDeSistema() {
-        // Método para ocultar las barras del sistema
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
