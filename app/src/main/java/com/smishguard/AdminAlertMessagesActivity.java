@@ -81,9 +81,16 @@ public class AdminAlertMessagesActivity extends AppCompatActivity {
                             JSONObject alertJson = alertArray.getJSONObject(i);
                             String id = alertJson.getString("_id");
                             String contenido = alertJson.getString("contenido");
-                            String url = alertJson.getString("url");
+                            String url = alertJson.optString("url", "No se proporcionó URL");
 
-                            AlertMessageModel alertMessage = new AlertMessageModel(id, contenido, url);
+                            // Extracción de los campos adicionales del análisis
+                            JSONObject analysis = alertJson.getJSONObject("analisis");
+                            String nivelPeligro = analysis.optString("nivel_peligro", "No especificado");
+                            String justificacionGpt = analysis.optString("justificacion_gpt", "No disponible");
+                            int ponderado = analysis.optInt("ponderado", 0);
+
+                            // Crear el objeto AlertMessageModel con todos los datos
+                            AlertMessageModel alertMessage = new AlertMessageModel(id, contenido, url, nivelPeligro, justificacionGpt, ponderado);
                             alertMessages.add(alertMessage);
                         }
 

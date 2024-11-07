@@ -33,7 +33,7 @@
                 app:srcCompat="@drawable/inbox_top_frame" />
 
             <ImageButton
-                android:id="@+id/btnBackAnalysis"
+                android:id="@+id/btnBackAlertMessages"
                 android:layout_width="58dp"
                 android:layout_height="59dp"
                 android:layout_alignParentStart="true"
@@ -52,9 +52,9 @@
                 android:layout_marginStart="81dp"
                 android:layout_marginTop="47dp"
                 android:layout_marginEnd="18dp"
-                android:layout_toEndOf="@+id/btnBackAnalysis"
+                android:layout_toEndOf="@+id/btnBackAlertMessages"
                 android:layout_weight="1"
-                android:text="Resultado"
+                android:text="Informe de Alerta"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="30sp"
@@ -241,47 +241,30 @@
         app:layout_constraintVertical_bias="0.163">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnShareReport"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="160dp"
+            android:id="@+id/btnPostTweet"
+            style="@android:style/Widget.Button"
+            android:layout_width="149dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
-            android:background="@drawable/button_background_red"
-            android:text="COMPARTIR ANALISÍS"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_background_blue"
+            android:gravity="center"
+            android:text="Publicar Tweet"
             android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="15sp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnBlockNumber"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/btnDeleteAlert"
+            style="@android:style/Widget.Button"
+            android:layout_width="148dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="@drawable/button_background_red"
-            android:text="BLOQUEAR NUMERO"
+            android:gravity="center"
+            android:text="Eliminar Alerta"
             android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="15sp" />
+
     </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="357dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
-
-        <TextView
-            android:id="@+id/textViewInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Si compartes el analisís con nosotros aceptas que el mensaje puede ser expuesto en algunas redes sociales con el fin de combatir el Smishing (NO SE COMPARTIRÁ NINGÚN DATO PERSONAL)."
-            android:textAlignment="center"
-            android:textColor="#FA0000"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

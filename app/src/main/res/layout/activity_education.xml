@@ -65,7 +65,7 @@
         android:id="@+id/textView56"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="¡Desliza hacia la derecha para ver todas las infografias!"
         android:textAlignment="center"
         android:textColor="#c70039"
@@ -76,12 +76,12 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="360dp"
-        android:layout_height="520dp"
+        android:layout_height="500dp"
         android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView56">
+        app:layout_constraintTop_toBottomOf="@+id/textViewYouTubeLink">
 
     </androidx.viewpager2.widget.ViewPager2>
 
@@ -93,8 +93,24 @@
         android:layout_gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="30dp"
         app:tabIndicatorColor="@color/dark_blue" />
+
+    <TextView
+        android:id="@+id/textViewYouTubeLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:autoLink="web"
+        android:clickable="true"
+        android:linksClickable="true"
+        android:text="Si quieres aprender un poco más haz click aquí para ver un video"
+        android:textColor="#c70039"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView56" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnGoEducationTest"

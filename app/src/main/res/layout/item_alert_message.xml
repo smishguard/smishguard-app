@@ -55,24 +55,13 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnPostTweet"
+                android:id="@+id/btnViewInform"
                 style="@android:style/Widget.Button"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_background_blue"
                 android:gravity="center"
-                android:text="Publicar Tweet"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnDeleteAlert"
-                style="@android:style/Widget.Button"
-                android:layout_width="129dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_background_red"
-                android:gravity="center"
-                android:text="Eliminar Alerta"
+                android:text="Ver Informe"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
