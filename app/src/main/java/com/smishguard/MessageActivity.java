@@ -5,20 +5,15 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.smishguard.databinding.ActivityMessageBinding;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -26,12 +21,15 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import android.app.ProgressDialog;
+import java.util.concurrent.TimeUnit;
 
 public class MessageActivity extends AppCompatActivity {
 
     private ActivityMessageBinding binding;
     private OkHttpClient client;
     private static final String URL = "https://smishguard-api-gateway.onrender.com/consultar-modelo";
+    private ProgressDialog progressDialog; // Añadido para controlar el progreso
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +39,17 @@ public class MessageActivity extends AppCompatActivity {
 
         ocultarBarrasDeSistema();
 
-        // Inicializar OkHttpClient
-        client = new OkHttpClient();
+        // Inicializar OkHttpClient con un timeout de 15 segundos
+        client = new OkHttpClient.Builder()
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(15, TimeUnit.SECONDS)
+                .writeTimeout(15, TimeUnit.SECONDS)
+                .build();
+
+        // Configuración de ProgressDialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Analizando...");
+        progressDialog.setCancelable(false);
 
         // Obtener los datos del Intent
         final String address = getIntent().getStringExtra("address");
@@ -67,8 +74,8 @@ public class MessageActivity extends AppCompatActivity {
                 return;
             }
 
-            Toast.makeText(MessageActivity.this, "Analizando...", Toast.LENGTH_SHORT).show();
-            // Enviar la solicitud al backend Flask
+            // Mostrar ProgressDialog y enviar la solicitud al backend
+            progressDialog.show();
             enviarSolicitudAnalisis(mensaje, address);
         });
 
@@ -79,36 +86,35 @@ public class MessageActivity extends AppCompatActivity {
 
     // Método para enviar la solicitud al backend Flask
     private void enviarSolicitudAnalisis(String mensaje, String address) {
-        // Crear el objeto JSON
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("mensaje", mensaje);
             jsonBody.put("numero_celular", address);
         } catch (JSONException e) {
             e.printStackTrace();
-            runOnUiThread(() -> Toast.makeText(MessageActivity.this, "Error al crear el cuerpo de la solicitud", Toast.LENGTH_SHORT).show());
+            Toast.makeText(MessageActivity.this, "Error al crear el cuerpo de la solicitud", Toast.LENGTH_SHORT).show();
+            progressDialog.dismiss(); // Ocultar ProgressDialog en caso de error
             return;
         }
 
-        // Mostrar un mensaje de log para saber que la solicitud está por enviarse
         Log.d("MessageActivity", "Enviando solicitud con mensaje: " + mensaje);
 
-        // Convertir el objeto JSON a un RequestBody
         MediaType JSON = MediaType.get("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
 
-        // Crear la solicitud HTTP
         Request request = new Request.Builder()
                 .url(URL)
                 .post(body)
                 .build();
 
-        // Enviar la solicitud de manera asíncrona
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e("MessageActivity", "Error en la solicitud: " + e.getMessage(), e);
-                runOnUiThread(() -> Toast.makeText(MessageActivity.this, "Error al conectarse al servidor", Toast.LENGTH_SHORT).show());
+                runOnUiThread(() -> {
+                    progressDialog.dismiss(); // Ocultar ProgressDialog en caso de fallo
+                    Toast.makeText(MessageActivity.this, "Error al conectarse al servidor", Toast.LENGTH_SHORT).show();
+                });
             }
 
             @Override
@@ -117,7 +123,6 @@ public class MessageActivity extends AppCompatActivity {
                     String responseData = response.body().string();
                     Log.d("MessageActivity", "Respuesta exitosa: " + responseData);
 
-                    // Parsear la respuesta como JSON
                     try {
                         JSONObject jsonResponse = new JSONObject(responseData);
                         String mensajeAnalizado = jsonResponse.getString("mensaje_analizado");
@@ -127,23 +132,32 @@ public class MessageActivity extends AppCompatActivity {
                         String numero = jsonResponse.getString("numero_celular");
                         int puntaje = jsonResponse.getInt("puntaje");
 
-                        // Crear un Intent para ir a ResultActivity y pasar los datos
-                        Intent intent = new Intent(MessageActivity.this, ResultActivity.class);
-                        intent.putExtra("mensajeAnalizado", mensajeAnalizado);
-                        intent.putExtra("analisisSmishguard", analisisSmishguard);
-                        intent.putExtra("analisisGpt", analisisGpt);
-                        intent.putExtra("enlace", enlace);
-                        intent.putExtra("puntaje", puntaje);
-                        intent.putExtra("numero", numero);
-                        startActivity(intent);
+                        // Ocultar ProgressDialog y pasar a ResultActivity con los datos obtenidos
+                        runOnUiThread(() -> {
+                            progressDialog.dismiss();
+                            Intent intent = new Intent(MessageActivity.this, ResultActivity.class);
+                            intent.putExtra("mensajeAnalizado", mensajeAnalizado);
+                            intent.putExtra("analisisSmishguard", analisisSmishguard);
+                            intent.putExtra("analisisGpt", analisisGpt);
+                            intent.putExtra("enlace", enlace);
+                            intent.putExtra("puntaje", puntaje);
+                            intent.putExtra("numero", numero);
+                            startActivity(intent);
+                        });
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        runOnUiThread(() -> Toast.makeText(MessageActivity.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show());
+                        runOnUiThread(() -> {
+                            progressDialog.dismiss();
+                            Toast.makeText(MessageActivity.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show();
+                        });
                     }
                 } else {
                     Log.e("MessageActivity", "Error en el servidor: " + response.message());
-                    runOnUiThread(() -> Toast.makeText(MessageActivity.this, "Error en el servidor: " + response.message(), Toast.LENGTH_SHORT).show());
+                    runOnUiThread(() -> {
+                        progressDialog.dismiss();
+                        Toast.makeText(MessageActivity.this, "Error en el servidor: " + response.message(), Toast.LENGTH_SHORT).show();
+                    });
                 }
             }
         });

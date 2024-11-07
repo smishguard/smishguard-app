@@ -1,6 +1,7 @@
 package com.smishguard;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -29,25 +30,34 @@ public class EducationActivity extends AppCompatActivity {
 
         ocultarBarrasDeSistema();
 
+        // Set click listener for back button
         binding.btnBackEducation.setOnClickListener(view -> {
             startActivity(new Intent(EducationActivity.this, MainActivity.class));
         });
 
+        // Set click listener for education test button
         binding.btnGoEducationTest.setOnClickListener(view -> {
             startActivity(new Intent(EducationActivity.this, EducationTestActivity.class));
         });
 
-        // Configurar el carrusel de fotos
+        // Set click listener for the YouTube link
+        binding.textViewYouTubeLink.setOnClickListener(view -> {
+            String url = "https://www.youtube.com/watch?v=t6k24MQFCsw";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+        });
+
+        // Configure the image carousel
         imageUrls = new ArrayList<>();
         adapter = new ImagesCarouselEducationAdapter(this, imageUrls);
         binding.viewPager.setAdapter(adapter);
 
-        // Vincular el TabLayout con el ViewPager para el indicador de imágenes
+        // Attach TabLayout with ViewPager for image indicator
         new TabLayoutMediator(binding.tabLayout, binding.viewPager, (tab, position) -> {
-            // El TabLayout no necesita configuración en cada posición
+            // No need for specific tab configuration
         }).attach();
 
-        // Cargar imágenes desde Firebase Storage
+        // Load images from Firebase Storage
         loadImagesFromFirebase();
     }
 
@@ -55,22 +65,18 @@ public class EducationActivity extends AppCompatActivity {
         FirebaseStorage storage = FirebaseStorage.getInstance("gs://smishguard-6cf37.firebasestorage.app");
         StorageReference storageRef = storage.getReference().child("education_images");
 
-        // Crear una lista temporal para almacenar las referencias de archivo
         List<StorageReference> fileReferences = new ArrayList<>();
 
         storageRef.listAll().addOnSuccessListener(listResult -> {
-            // Agregar todos los archivos encontrados a la lista temporal
             fileReferences.addAll(listResult.getItems());
 
-            // Ordenar los archivos alfabéticamente por nombre
+            // Sort the files alphabetically by name
             Collections.sort(fileReferences, Comparator.comparing(StorageReference::getName));
 
-            // Obtener las URLs en el orden deseado
             for (StorageReference fileRef : fileReferences) {
                 fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
                     imageUrls.add(uri.toString());
 
-                    // Actualizar el adaptador después de agregar todas las URLs en orden
                     if (imageUrls.size() == fileReferences.size()) {
                         adapter.notifyDataSetChanged();
                     }
