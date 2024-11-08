@@ -45,7 +45,7 @@
         <activity android:name=".AdminProfileActivity" />
         <activity android:name=".AdminAlertMessagesActivity" />
         <activity android:name=".AdminSupportCommentsActivity" />
-        <activity android:name=".AdminStaticsSmishguardActivity" />
+        <activity android:name=".AdminAnalyticsSmishguardActivity" />
         <activity android:name=".AdminUpdateEducationActivity" />
         <activity android:name=".AdminInfoAlertMessageActivity" />
     </application>

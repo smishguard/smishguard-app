@@ -73,7 +73,7 @@ public class AdminMainActivity extends AppCompatActivity {
         binding.imgViewStaticsSmishguard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AdminMainActivity.this, AdminStaticsSmishguardActivity.class));
+                startActivity(new Intent(AdminMainActivity.this, AdminAnalyticsSmishguardActivity.class));
             }
         });
 

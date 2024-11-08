@@ -45,6 +45,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation ("com.google.firebase:firebase-storage:20.0.0")
     implementation ("com.google.firebase:firebase-core:21.0.0")
     implementation ("com.google.firebase:firebase-firestore:24.0.0")
