@@ -1,5 +1,6 @@
 package com.smishguard;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,8 +12,7 @@ import com.smishguard.databinding.ActivityManualAnalysisBinding;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
-import okhttp3.Call;
-import okhttp3.Callback;
+import java.util.concurrent.Executors;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -56,22 +56,27 @@ public class ManualAnalysisActivity extends AppCompatActivity {
         });
     }
 
-    // Método para enviar la solicitud al backend Flask
     private void enviarSolicitudAnalisis(String mensaje) {
+        // Crear ProgressDialog para indicar que la solicitud está en proceso
+        ProgressDialog progressDialog = new ProgressDialog(ManualAnalysisActivity.this);
+        progressDialog.setMessage("Analizando...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         // Crear el objeto JSON
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("mensaje", mensaje);
         } catch (JSONException e) {
             e.printStackTrace();
-            runOnUiThread(() -> Toast.makeText(ManualAnalysisActivity.this, "Error al crear el cuerpo de la solicitud", Toast.LENGTH_SHORT).show());
+            progressDialog.dismiss(); // Cerrar el ProgressDialog en caso de error
+            Toast.makeText(ManualAnalysisActivity.this, "Error al crear el cuerpo de la solicitud", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Mostrar un mensaje de log para saber que la solicitud está por enviarse
         Log.d("ManualAnalysisActivity", "Enviando solicitud con mensaje: " + mensaje);
 
-        // Convertir el objeto JSON a un RequestBody
+        // Crear el RequestBody
         MediaType JSON = MediaType.get("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
 
@@ -81,32 +86,25 @@ public class ManualAnalysisActivity extends AppCompatActivity {
                 .post(body)
                 .build();
 
-        // Enviar la solicitud de manera asíncrona
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                // Manejar error en la solicitud
-                Log.e("ManualAnalysisActivity", "Error en la solicitud: " + e.getMessage(), e);
-                runOnUiThread(() -> Toast.makeText(ManualAnalysisActivity.this, "Error al conectarse al servidor", Toast.LENGTH_SHORT).show());
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                // Manejar respuesta del servidor
+        // Ejecutar la solicitud en un hilo secundario
+        Executors.newSingleThreadExecutor().execute(() -> {
+            try {
+                // Ejecutar la solicitud y esperar la respuesta
+                Response response = client.newCall(request).execute();
                 if (response.isSuccessful()) {
                     String responseData = response.body().string();
                     Log.d("ManualAnalysisActivity", "Respuesta exitosa: " + responseData);
 
-                    // Parsear la respuesta como JSON
-                    try {
-                        JSONObject jsonResponse = new JSONObject(responseData);
-                        String mensajeAnalizado = jsonResponse.getString("mensaje_analizado");
-                        String analisisSmishguard = jsonResponse.getString("analisis_smishguard");
-                        String analisisGpt = jsonResponse.getString("analisis_gpt");
-                        String enlace = jsonResponse.getString("enlace");
-                        int puntaje = jsonResponse.getInt("puntaje");
+                    JSONObject jsonResponse = new JSONObject(responseData);
+                    String mensajeAnalizado = jsonResponse.getString("mensaje_analizado");
+                    String analisisSmishguard = jsonResponse.getString("analisis_smishguard");
+                    String analisisGpt = jsonResponse.getString("analisis_gpt");
+                    String enlace = jsonResponse.getString("enlace");
+                    int puntaje = jsonResponse.getInt("puntaje");
 
-                        // Crear un Intent para ir a ResultActivity y pasar los datos
+                    // Actualizar la UI en el hilo principal
+                    runOnUiThread(() -> {
+                        progressDialog.dismiss(); // Cerrar el ProgressDialog
                         Intent intent = new Intent(ManualAnalysisActivity.this, ResultActivity.class);
                         intent.putExtra("mensajeAnalizado", mensajeAnalizado);
                         intent.putExtra("analisisSmishguard", analisisSmishguard);
@@ -115,15 +113,20 @@ public class ManualAnalysisActivity extends AppCompatActivity {
                         intent.putExtra("puntaje", puntaje);
                         intent.putExtra("numero", "");
                         startActivity(intent);
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        runOnUiThread(() -> Toast.makeText(ManualAnalysisActivity.this, "Error al procesar la respuesta", Toast.LENGTH_SHORT).show());
-                    }
+                    });
                 } else {
                     Log.e("ManualAnalysisActivity", "Error en el servidor: " + response.message());
-                    runOnUiThread(() -> Toast.makeText(ManualAnalysisActivity.this, "Error en el servidor: " + response.message(), Toast.LENGTH_SHORT).show());
+                    runOnUiThread(() -> {
+                        progressDialog.dismiss();
+                        Toast.makeText(ManualAnalysisActivity.this, "Error en el servidor: " + response.message(), Toast.LENGTH_SHORT).show();
+                    });
                 }
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+                runOnUiThread(() -> {
+                    progressDialog.dismiss();
+                    Toast.makeText(ManualAnalysisActivity.this, "Error al procesar la solicitud", Toast.LENGTH_SHORT).show();
+                });
             }
         });
     }
