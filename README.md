@@ -6,8 +6,7 @@
 
 1. [Características](#-características)
 2. [Tecnologías Usadas](#-tecnologías-usadas)
-3. [Uso](#-uso)
-4. [Licencia](#-licencia)
+3. [Licencia](#-licencia)
 
 ---
 
@@ -36,22 +35,6 @@
 - **MPAndroidChart**: Visualización de datos en gráficos.
 - **Firebase**: Gestión de autenticación y almacenamiento de datos.
 - **Back-End**: Arquitectura REST para el procesamiento de datos (implementación separada).
-
----
-
-## 📱 Uso
-### Usuario
-- **Bandeja de Entrada**: Accede a todos tus mensajes recibidos y realiza análisis de seguridad.
-- **Análisis Manual**: Pega contenido y realiza análisis para identificar riesgos potenciales.
-- **Sección Educativa**: Aprende sobre seguridad con infografías, videos y trivias.
-- **Historial de Análisis**: Consulta el registro de análisis previos.
-- **Números Bloqueados**: Administra los números de teléfono bloqueados.
-
-### Administrador
-- **Reporte de Alertas**: Publica alertas en redes sociales.
-- **Actualizar Sección Educativa**: Añade o edita recursos educativos.
-- **Comentarios de Soporte**: Revisa y responde a comentarios de usuarios.
-- **Estadísticas**: Visualiza estadísticas detalladas sobre el uso de la aplicación.
 
 ---
 
