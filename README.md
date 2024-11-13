@@ -7,7 +7,8 @@
 1. [Características](#-características)
 2. [Tecnologías Usadas](#-tecnologías-usadas)
 3. [Instalación](#-instalación)
-4. [Licencia](#-licencia)
+4. [Estructura de Carpetas](#-estructura-de-carpetas)
+5. [Licencia](#-licencia)
 
 ---
 
@@ -68,6 +69,28 @@ Para instalar y ejecutar la aplicación en tu dispositivo o emulador local, sigu
 - Conecta tu dispositivo o usa un emulador de Android.
 - Haz clic en Run para compilar y ejecutar la aplicación.
   
+---
+
+## 📁 Estructura de Carpetas
+La estructura principal del proyecto es la siguiente:
+
+    ```bash
+      smishguard/
+      ├── app/                     # Código de la aplicación Android
+      │   ├── src/
+      │   │   ├── main/
+      │   │   │   ├── java/com/smishguard/
+      │   │   │   │   ├── activities/       # Actividades de la aplicación
+      │   │   │   │   ├── adapters/         # Adaptadores de RecyclerView
+      │   │   │   │   ├── models/           # Modelos de datos
+      │   │   │   │   └── utils/            # Utilidades
+      │   │   │   ├── res/                  # Recursos de la app (layouts, drawables, etc.)
+      │   │   │   └── AndroidManifest.xml
+      │   └── build.gradle
+      ├── .gitignore
+      ├── README.md
+      └── build.gradle
+
 ---
 
 ## 📄 Licencia
