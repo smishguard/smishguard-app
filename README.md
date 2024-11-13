@@ -6,7 +6,8 @@
 
 1. [Características](#-características)
 2. [Tecnologías Usadas](#-tecnologías-usadas)
-3. [Licencia](#-licencia)
+3. [Instalación](#-instalación)
+4. [Licencia](#-licencia)
 
 ---
 
@@ -36,6 +37,37 @@
 - **Firebase**: Gestión de autenticación y almacenamiento de datos.
 - **Back-End**: Arquitectura REST para el procesamiento de datos (implementación separada).
 
+---
+
+## 🚀 Instalación
+
+Para instalar y ejecutar la aplicación en tu dispositivo o emulador local, sigue los pasos a continuación.
+
+### Prerrequisitos
+
+- Android Studio
+- Conexión a Internet
+- SDK de Android versión mínima 21 (Lollipop)
+
+### Pasos de Instalación
+
+1. **Clonar el repositorio:**
+
+   ```bash
+   git clone https://github.com/tuusuario/smishguard.git
+   cd smishguard
+   
+2. Abrir en Android Studio:
+- Abre Android Studio y selecciona Open an existing project.
+- Navega a la carpeta donde clonaste el repositorio y selecciona la carpeta del proyecto SmishGuard.
+  
+3. Configurar Firebase (opcional):
+- Si deseas configurar Firebase, añade tu archivo google-services.json en el directorio app/ y asegúrate de haber creado los recursos necesarios en Firebase Console.
+- 
+4. Ejecutar la aplicación:
+- Conecta tu dispositivo o usa un emulador de Android.
+- Haz clic en Run para compilar y ejecutar la aplicación.
+  
 ---
 
 ## 📄 Licencia
