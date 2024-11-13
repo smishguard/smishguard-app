@@ -61,32 +61,41 @@
     <!-- Contenedor centrado de la imagen y botones -->
     <LinearLayout
         android:id="@+id/linearLayout13"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="411dp"
+        android:layout_height="498dp"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
         <ImageView
             android:id="@+id/imageViewPreview"
             android:layout_width="360dp"
-            android:layout_height="480dp"
+            android:layout_height="460dp"
             android:layout_marginTop="16dp"
             android:contentDescription="Vista previa de la imagen"
             android:scaleType="fitCenter" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout21"
+        android:layout_width="407dp"
+        android:layout_height="56dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout13">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSelectImage"
             style="@android:style/Widget.Button"
             android:layout_width="166dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:background="@drawable/button_background_blue"
             android:text="Seleccionar Imagen"
             android:textColor="@color/white"
@@ -97,11 +106,27 @@
             style="@android:style/Widget.Button"
             android:layout_width="168dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/button_background_red"
+            android:background="@drawable/button_background_blue"
             android:text="Cargar Imagen"
             android:textColor="@color/white"
             android:textSize="15sp" />
+
     </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDeleteInfographics"
+        style="@android:style/Widget.Button"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_background_red"
+        android:text="Eliminar Infografias"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout21" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,14 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmishGuard"
         tools:targetApi="31">
-        <activity android:name=".AnalysisActivity" />
-        <activity android:name=".BlockedNumbersActivity" />
-        <activity android:name=".ConfigurationActivity" />
-        <activity android:name=".EducationActivity" />
-        <activity android:name=".InboxActivity" />
-        <activity android:name=".InitialActivity"/>
+        <activity android:name=".activities.AnalysisActivity" />
+        <activity android:name=".activities.BlockedNumbersActivity" />
+        <activity android:name=".activities.ConfigurationActivity" />
+        <activity android:name=".activities.EducationActivity" />
+        <activity android:name=".activities.InboxActivity" />
+        <activity android:name=".activities.InitialActivity"/>
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".utils.SplashScreenUtil"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -30,24 +30,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ManualAnalysisActivity" />
-        <activity android:name=".MessageActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".AnalyzedMessagesActivity" />
-        <activity android:name=".ResultActivity" />
-        <activity android:name=".ChangeCredentialsActivity" />
-        <activity android:name=".SupportActivity" />
-        <activity android:name=".EducationTestActivity" />
-        <activity android:name=".AdminMainActivity" />
-        <activity android:name=".AdminProfileActivity" />
-        <activity android:name=".AdminAlertMessagesActivity" />
-        <activity android:name=".AdminSupportCommentsActivity" />
-        <activity android:name=".AdminAnalyticsSmishguardActivity" />
-        <activity android:name=".AdminUpdateEducationActivity" />
-        <activity android:name=".AdminInfoAlertMessageActivity" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.ManualAnalysisActivity" />
+        <activity android:name=".activities.MessageActivity" />
+        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.AnalyzedMessagesActivity" />
+        <activity android:name=".activities.ResultActivity" />
+        <activity android:name=".activities.ChangeCredentialsActivity" />
+        <activity android:name=".activities.SupportActivity" />
+        <activity android:name=".activities.EducationTestActivity" />
+        <activity android:name=".activities.AdminMainActivity" />
+        <activity android:name=".activities.AdminProfileActivity" />
+        <activity android:name=".activities.AdminAlertMessagesActivity" />
+        <activity android:name=".activities.AdminSupportCommentsActivity" />
+        <activity android:name=".activities.AdminAnalyticsSmishguardActivity" />
+        <activity android:name=".activities.AdminUpdateEducationActivity" />
+        <activity android:name=".activities.AdminInfoAlertMessageActivity" />
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
