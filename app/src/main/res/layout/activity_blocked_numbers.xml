@@ -65,8 +65,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBlockedNumbers"
-        android:layout_width="360dp"
-        android:layout_height="594dp"
+        android:layout_width="351dp"
+        android:layout_height="592dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

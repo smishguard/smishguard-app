@@ -1,6 +1,7 @@
 package com.smishguard.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,9 @@ public class AdminProfileActivity extends AppCompatActivity {
             binding.textViewProfileDate.setText("N/A");
         }
 
+        binding.btnGoX.setOnClickListener(view -> openTwitterProfile());
+        binding.btnGoInstagram.setOnClickListener(view -> openInstagramProfile());
+
         binding.btnBackAdminProfile.setOnClickListener(view -> {
             startActivity(new Intent(AdminProfileActivity.this, AdminMainActivity.class));
         });
@@ -43,6 +47,41 @@ public class AdminProfileActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
+    }
+
+    private void openTwitterProfile() {
+        String twitterUsername = "SmishGuard";
+
+        // Intent para abrir la aplicación de Twitter
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("twitter://user?screen_name=" + twitterUsername));
+            intent.setPackage("com.twitter.android");
+            startActivity(intent);
+        } catch (Exception e) {
+            // Si no está instalada la aplicación, abrir en el navegador
+            Intent intent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://twitter.com/" + twitterUsername));
+            startActivity(intent);
+        }
+    }
+
+    private void openInstagramProfile() {
+        String instagramUsername = "SmishGuard";
+
+        // Intent para abrir la aplicación de Instagram
+        Uri uri = Uri.parse("http://instagram.com/_u/" + instagramUsername);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        intent.setPackage("com.instagram.android");
+
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            // Si no está instalada la aplicación, abrir en el navegador
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://instagram.com/" + instagramUsername));
+            startActivity(webIntent);
+        }
     }
 
     @Override
