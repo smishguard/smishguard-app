@@ -66,11 +66,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="¡Desliza hacia la derecha para ver todas las infografias!"
         android:textAlignment="center"
         android:textColor="#c70039"
         android:textSize="12sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
     <androidx.viewpager2.widget.ViewPager2
@@ -102,9 +105,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:autoLink="web"
+        android:gravity="center"
         android:clickable="true"
         android:linksClickable="true"
         android:text="Si quieres aprender un poco más haz click aquí para ver un video"
+        android:textAlignment="center"
         android:textColor="#c70039"
         android:textSize="13sp"
         android:textStyle="bold"
