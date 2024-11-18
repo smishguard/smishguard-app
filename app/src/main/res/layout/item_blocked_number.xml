@@ -57,6 +57,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:background="@drawable/button_background_red"
+                android:layout_marginRight="20dp"
                 android:text="Desbloquear Número"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
